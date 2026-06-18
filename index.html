@@ -15,17 +15,18 @@ padding:20px;
 }
 
 .container{
-max-width:600px;
+max-width:700px;
 margin:auto;
 background:white;
-padding:20px;
-border-radius:10px;
+padding:25px;
+border-radius:12px;
 box-shadow:0 0 10px rgba(0,0,0,.1);
 }
 
 h1{
 text-align:center;
 color:#35C7B1;
+margin-bottom:20px;
 }
 
 label{
@@ -36,8 +37,10 @@ font-weight:bold;
 
 select,input,textarea{
 width:100%;
-padding:10px;
+padding:12px;
 margin-top:5px;
+border:1px solid #ccc;
+border-radius:8px;
 box-sizing:border-box;
 }
 
@@ -48,8 +51,13 @@ margin-top:20px;
 background:#35C7B1;
 color:white;
 border:none;
-cursor:pointer;
+border-radius:8px;
 font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+opacity:0.9;
 }
 </style>
 </head>
@@ -58,7 +66,7 @@ font-size:16px;
 
 <div class="container">
 
-<h1>Green Light Automotive Center</h1>
+<h1>🚦 Green Light Automotive Center</h1>
 
 <label>Language</label>
 <select id="language">
@@ -67,17 +75,18 @@ font-size:16px;
 <option>Afaan Oromo</option>
 </select>
 
-<label>Rating (1-5)</label>
+<label>Overall Rating</label>
 <select id="rating">
-<option>1</option>
-<option>2</option>
-<option>3</option>
-<option>4</option>
-<option selected>5</option>
+<option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+<option value="4">⭐⭐⭐⭐ Very Good</option>
+<option value="3">⭐⭐⭐ Good</option>
+<option value="2">⭐⭐ Fair</option>
+<option value="1">⭐ Poor</option>
 </select>
 
 <label>Department</label>
-<select id="department">
+<select id="department" onchange="loadEmployees()">
+<option value="">Select Department</option>
 <option>Mechanical</option>
 <option>Electrical</option>
 <option>Engine Shop</option>
@@ -88,15 +97,17 @@ font-size:16px;
 </select>
 
 <label>Employee</label>
-<input id="employee" placeholder="Employee name">
+<select id="employee">
+<option value="">Select Employee</option>
+</select>
 
 <label>Comment</label>
-<textarea id="comment"></textarea>
+<textarea id="comment" rows="4"></textarea>
 
-<label>Phone</label>
+<label>Phone Number (Optional)</label>
 <input id="phone">
 
-<label>Plate Number</label>
+<label>Plate Number (Optional)</label>
 <input id="plate">
 
 <button onclick="submitFeedback()">
@@ -110,40 +121,89 @@ Submit Feedback
 const API_URL =
 "https://script.google.com/macros/s/AKfycbyHxmqkp0w1n905deIqGZtsg_WozeWaHF5qmsQRMd1Ori-hyUngJLyowrIiDPsmucsU/exec";
 
-function submitFeedback(){
-
-const data = {
-
-language:
-document.getElementById("language").value,
-
-rating:
-document.getElementById("rating").value,
-
-department:
-document.getElementById("department").value,
-
-employee:
-document.getElementById("employee").value,
-
-comment:
-document.getElementById("comment").value,
-
-phone:
-document.getElementById("phone").value,
-
-plate:
-document.getElementById("plate").value
-
+const employees = {
+  "Mechanical":["Chalachew","Mikiyas","Angesom"],
+  "Electrical":["Daniel"],
+  "Engine Shop":["Chalachew"],
+  "Car Wash":["Asebe"],
+  "Security":[
+    "Ato Tsegaye",
+    "Ato Ermiyas",
+    "Ato Muluneh",
+    "Ato Kassa",
+    "Ato Asebe"
+  ],
+  "Customer Service":["Aberham"],
+  "Finance":["Elias"]
 };
 
-fetch(API_URL,{
-method:"POST",
-mode:"no-cors",
-body:JSON.stringify(data)
-});
+function loadEmployees(){
 
-alert("Feedback submitted successfully.");
+  const dept =
+  document.getElementById("department").value;
+
+  const emp =
+  document.getElementById("employee");
+
+  emp.innerHTML =
+  '<option value="">Select Employee</option>';
+
+  if(employees[dept]){
+
+    employees[dept].forEach(name=>{
+
+      const option =
+      document.createElement("option");
+
+      option.value = name;
+      option.textContent = name;
+
+      emp.appendChild(option);
+
+    });
+
+  }
+
+}
+
+function submitFeedback(){
+
+  const data = {
+
+    language:
+    document.getElementById("language").value,
+
+    rating:
+    document.getElementById("rating").value,
+
+    department:
+    document.getElementById("department").value,
+
+    employee:
+    document.getElementById("employee").value,
+
+    comment:
+    document.getElementById("comment").value,
+
+    phone:
+    document.getElementById("phone").value,
+
+    plate:
+    document.getElementById("plate").value
+
+  };
+
+  fetch(API_URL,{
+    method:"POST",
+    mode:"no-cors",
+    body:JSON.stringify(data)
+  });
+
+  alert("Thank you for your feedback!");
+
+  document.getElementById("comment").value="";
+  document.getElementById("phone").value="";
+  document.getElementById("plate").value="";
 
 }
 
@@ -152,28 +212,3 @@ alert("Feedback submitted successfully.");
 </body>
 </html>
 ```
-function getDashboardData() {
-
-  const feedbackSheet = SpreadsheetApp
-    .openById(SPREADSHEET_ID)
-    .getSheetByName("Feedback");
-
-  const data = feedbackSheet.getDataRange().getValues();
-
-  let totalFeedback = data.length - 1;
-  let totalRating = 0;
-
-  for(let i = 1; i < data.length; i++) {
-    totalRating += Number(data[i][2]) || 0;
-  }
-
-  let avgRating = totalFeedback > 0
-    ? (totalRating / totalFeedback).toFixed(2)
-    : 0;
-
-  return {
-    totalFeedback,
-    avgRating
-  };
-
-}
