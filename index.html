@@ -1,108 +1,451 @@
 ```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>Green Light Automotive Center</title>
 
 <style>
-body{
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 font-family:Arial,sans-serif;
-background:#f4f4f4;
+}
+
+body{
+background:#111;
+color:#fff;
+min-height:100vh;
 padding:20px;
 }
 
 .container{
-max-width:700px;
+max-width:800px;
 margin:auto;
-background:white;
+background:#1b1b1b;
+border-radius:20px;
 padding:25px;
-border-radius:12px;
-box-shadow:0 0 10px rgba(0,0,0,.1);
+box-shadow:0 0 30px rgba(0,0,0,.5);
+}
+
+.logo{
+text-align:center;
+font-size:50px;
+margin-bottom:10px;
 }
 
 h1{
 text-align:center;
 color:#35C7B1;
-margin-bottom:20px;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+color:#aaa;
+margin-bottom:25px;
+}
+
+.progress-container{
+background:#333;
+height:12px;
+border-radius:10px;
+overflow:hidden;
+margin-bottom:25px;
+}
+
+.progress-bar{
+height:100%;
+width:14%;
+background:#35C7B1;
+transition:.4s;
+}
+
+.step{
+display:none;
+animation:fade .3s ease;
+}
+
+.step.active{
+display:block;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
 }
 
 label{
 display:block;
 margin-top:15px;
+margin-bottom:8px;
 font-weight:bold;
 }
 
-select,input,textarea{
+input,
+select,
+textarea{
 width:100%;
 padding:12px;
-margin-top:5px;
-border:1px solid #ccc;
-border-radius:8px;
-box-sizing:border-box;
+border:none;
+border-radius:10px;
+background:#2b2b2b;
+color:white;
+}
+
+textarea{
+resize:vertical;
+}
+
+.button-row{
+display:flex;
+gap:10px;
+margin-top:25px;
 }
 
 button{
-width:100%;
-padding:15px;
-margin-top:20px;
+flex:1;
+padding:14px;
+border:none;
+border-radius:10px;
 background:#35C7B1;
 color:white;
-border:none;
-border-radius:8px;
 font-size:16px;
 cursor:pointer;
 }
 
 button:hover{
-opacity:0.9;
+opacity:.9;
 }
+
+.star-group{
+display:flex;
+gap:10px;
+justify-content:center;
+margin-top:20px;
+flex-wrap:wrap;
+}
+
+.star-btn{
+width:60px;
+height:60px;
+border-radius:50%;
+background:#2b2b2b;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+cursor:pointer;
+border:2px solid #444;
+}
+
+.star-btn.selected{
+background:#35C7B1;
+border-color:#35C7B1;
+}
+
+.nps-grid{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:10px;
+margin-top:20px;
+}
+
+.nps-btn{
+padding:15px;
+background:#2b2b2b;
+border-radius:10px;
+text-align:center;
+cursor:pointer;
+}
+
+.nps-btn.selected{
+background:#35C7B1;
+}
+
+.department-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+margin-top:20px;
+}
+
+.department-btn{
+padding:20px;
+background:#2b2b2b;
+border-radius:12px;
+cursor:pointer;
+text-align:center;
+}
+
+.department-btn.selected{
+background:#35C7B1;
+}
+
+.thankyou{
+text-align:center;
+padding:30px;
+}
+
+.review-btn{
+display:inline-block;
+padding:15px 25px;
+background:#35C7B1;
+border-radius:10px;
+color:white;
+text-decoration:none;
+margin-top:20px;
+}
+
+.step-title{
+font-size:24px;
+margin-bottom:15px;
+text-align:center;
+color:#35C7B1;
+}
+
 </style>
 </head>
-
 <body>
 
 <div class="container">
 
-<h1>🚦 Green Light Automotive Center</h1>
+<div class="logo">🚦</div>
+
+<h1>GREEN LIGHT</h1>
+
+<div class="subtitle">
+Automotive Center Customer Feedback
+</div>
+
+<div class="progress-container">
+<div class="progress-bar" id="progressBar"></div>
+</div>
+
+<!-- STEP 1 -->
+
+<div class="step active" id="step1">
+
+<div class="step-title">
+Choose Language
+</div>
 
 <label>Language</label>
+
 <select id="language">
 <option>English</option>
 <option>አማርኛ</option>
 <option>Afaan Oromo</option>
 </select>
 
-<label>Overall Rating</label>
-<select id="rating">
-<option value="5">⭐⭐⭐⭐⭐ Excellent</option>
-<option value="4">⭐⭐⭐⭐ Very Good</option>
-<option value="3">⭐⭐⭐ Good</option>
-<option value="2">⭐⭐ Fair</option>
-<option value="1">⭐ Poor</option>
-</select>
+<div class="button-row">
+<button onclick="nextStep()">
+Continue
+</button>
+</div>
 
-<label>Department</label>
-<select id="department" onchange="loadEmployees()">
-<option value="">Select Department</option>
-<option>Mechanical</option>
-<option>Electrical</option>
-<option>Engine Shop</option>
-<option>Car Wash</option>
-<option>Security</option>
-<option>Customer Service</option>
-<option>Finance</option>
-</select>
+</div>
+
+<!-- STEP 2 -->
+
+<div class="step" id="step2">
+
+<div class="step-title">
+Overall Experience
+</div>
+
+<div class="star-group">
+
+<div class="star-btn"
+onclick="setRating('overallRating',1,this)">1</div>
+
+<div class="star-btn"
+onclick="setRating('overallRating',2,this)">2</div>
+
+<div class="star-btn"
+onclick="setRating('overallRating',3,this)">3</div>
+
+<div class="star-btn"
+onclick="setRating('overallRating',4,this)">4</div>
+
+<div class="star-btn"
+onclick="setRating('overallRating',5,this)">5</div>
+
+</div>
+
+<div class="button-row">
+<button onclick="prevStep()">Back</button>
+<button onclick="nextStep()">Next</button>
+</div>
+
+</div>
+
+<!-- STEP 3 -->
+
+<div class="step" id="step3">
+
+<div class="step-title">
+Department
+</div>
+
+<div class="department-grid">
+
+<div class="department-btn"
+onclick="selectDepartment('Mechanical',this)">
+Mechanical
+</div>
+
+<div class="department-btn"
+onclick="selectDepartment('Electrical',this)">
+Electrical
+</div>
+
+<div class="department-btn"
+onclick="selectDepartment('Engine Shop',this)">
+Engine Shop
+</div>
+
+<div class="department-btn"
+onclick="selectDepartment('Car Wash',this)">
+Car Wash
+</div>
+
+<div class="department-btn"
+onclick="selectDepartment('Security',this)">
+Security
+</div>
+
+<div class="department-btn"
+onclick="selectDepartment('Customer Service',this)">
+Customer Service
+</div>
+
+<div class="department-btn"
+onclick="selectDepartment('Finance',this)">
+Finance
+</div>
+
+</div>
 
 <label>Employee</label>
-<select id="employee">
-<option value="">Select Employee</option>
+
+<select id="employee"></select>
+
+<div class="button-row">
+<button onclick="prevStep()">Back</button>
+<button onclick="nextStep()">Next</button>
+</div>
+
+</div>
+
+<!-- STEP 4 -->
+
+<div class="step" id="step4">
+
+<div class="step-title">
+Service Quality Ratings
+</div>
+
+<label>Service Quality</label>
+<select id="serviceQuality">
+<option>5</option>
+<option>4</option>
+<option>3</option>
+<option>2</option>
+<option>1</option>
 </select>
 
-<label>Comment</label>
-<textarea id="comment" rows="4"></textarea>
+<label>Speed</label>
+<select id="speed">
+<option>5</option>
+<option>4</option>
+<option>3</option>
+<option>2</option>
+<option>1</option>
+</select>
+
+<label>Professionalism</label>
+<select id="professionalism">
+<option>5</option>
+<option>4</option>
+<option>3</option>
+<option>2</option>
+<option>1</option>
+</select>
+
+<label>Communication</label>
+<select id="communication">
+<option>5</option>
+<option>4</option>
+<option>3</option>
+<option>2</option>
+<option>1</option>
+</select>
+
+<label>Cleanliness</label>
+<select id="cleanliness">
+<option>5</option>
+<option>4</option>
+<option>3</option>
+<option>2</option>
+<option>1</option>
+</select>
+
+<div class="button-row">
+<button onclick="prevStep()">Back</button>
+<button onclick="nextStep()">Next</button>
+</div>
+
+</div>
+
+<!-- STEP 5 -->
+
+<div class="step" id="step5">
+
+<div class="step-title">
+Recommendation Score
+</div>
+
+<div class="nps-grid" id="npsGrid"></div>
+
+<div class="button-row">
+<button onclick="prevStep()">Back</button>
+<button onclick="nextStep()">Next</button>
+</div>
+
+</div>
+
+<!-- STEP 6 -->
+
+<div class="step" id="step6">
+
+<div class="step-title">
+Comments
+</div>
+
+<textarea id="comment"
+rows="5"
+placeholder="Tell us about your experience">
+</textarea>
+
+<div class="button-row">
+<button onclick="prevStep()">Back</button>
+<button onclick="nextStep()">Next</button>
+</div>
+
+</div>
+
+<!-- STEP 7 -->
+
+<div class="step" id="step7">
+
+<div class="step-title">
+Contact Information
+</div>
 
 <label>Phone Number (Optional)</label>
 <input id="phone">
@@ -110,104 +453,34 @@ opacity:0.9;
 <label>Plate Number (Optional)</label>
 <input id="plate">
 
-<button onclick="submitFeedback()">
-Submit Feedback
-</button>
+<div class="button-row">
+<button onclick="prevStep()">Back</button>
+<button onclick="submitFeedback()">Submit</button>
+</div>
 
 </div>
 
-<script>
+<!-- THANK YOU -->
 
-const API_URL =
-"https://script.google.com/macros/s/AKfycbyHxmqkp0w1n905deIqGZtsg_WozeWaHF5qmsQRMd1Ori-hyUngJLyowrIiDPsmucsU/exec";
+<div class="step" id="thankyou">
 
-const employees = {
-  "Mechanical":["Chalachew","Mikiyas","Angesom"],
-  "Electrical":["Daniel"],
-  "Engine Shop":["Chalachew"],
-  "Car Wash":["Asebe"],
-  "Security":[
-    "Ato Tsegaye",
-    "Ato Ermiyas",
-    "Ato Muluneh",
-    "Ato Kassa",
-    "Ato Asebe"
-  ],
-  "Customer Service":["Aberham"],
-  "Finance":["Elias"]
-};
+<div class="thankyou">
 
-function loadEmployees(){
+<h2>Thank You!</h2>
 
-  const dept =
-  document.getElementById("department").value;
+<p>
+Your feedback helps us improve.
+</p>
 
-  const emp =
-  document.getElementById("employee");
+<div id="reviewSection"></div>
 
-  emp.innerHTML =
-  '<option value="">Select Employee</option>';
+</div>
 
-  if(employees[dept]){
+</div>
 
-    employees[dept].forEach(name=>{
+</div>
 
-      const option =
-      document.createElement("option");
-
-      option.value = name;
-      option.textContent = name;
-
-      emp.appendChild(option);
-
-    });
-
-  }
-
-}
-
-function submitFeedback(){
-
-  const data = {
-
-    language:
-    document.getElementById("language").value,
-
-    rating:
-    document.getElementById("rating").value,
-
-    department:
-    document.getElementById("department").value,
-
-    employee:
-    document.getElementById("employee").value,
-
-    comment:
-    document.getElementById("comment").value,
-
-    phone:
-    document.getElementById("phone").value,
-
-    plate:
-    document.getElementById("plate").value
-
-  };
-
-  fetch(API_URL,{
-    method:"POST",
-    mode:"no-cors",
-    body:JSON.stringify(data)
-  });
-
-  alert("Thank you for your feedback!");
-
-  document.getElementById("comment").value="";
-  document.getElementById("phone").value="";
-  document.getElementById("plate").value="";
-
-}
-
-</script>
+<!-- PART B WILL GO HERE -->
 
 </body>
 </html>
