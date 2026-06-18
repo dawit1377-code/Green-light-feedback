@@ -152,3 +152,28 @@ alert("Feedback submitted successfully.");
 </body>
 </html>
 ```
+function getDashboardData() {
+
+  const feedbackSheet = SpreadsheetApp
+    .openById(SPREADSHEET_ID)
+    .getSheetByName("Feedback");
+
+  const data = feedbackSheet.getDataRange().getValues();
+
+  let totalFeedback = data.length - 1;
+  let totalRating = 0;
+
+  for(let i = 1; i < data.length; i++) {
+    totalRating += Number(data[i][2]) || 0;
+  }
+
+  let avgRating = totalFeedback > 0
+    ? (totalRating / totalFeedback).toFixed(2)
+    : 0;
+
+  return {
+    totalFeedback,
+    avgRating
+  };
+
+}
