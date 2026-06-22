@@ -14,7 +14,13 @@
 <body class="bg-gray-900 text-gray-100 font-sans min-h-screen flex flex-col justify-between">
 
     <!-- Header / Branding -->
-    <header class="bg-gray-800 border-b border-green-500 py-6 text-center shadow-lg">
+    <header class="bg-gray-800 border-b border-green-500 py-6 text-center shadow-lg relative">
+        <!-- Language Switcher Pills -->
+        <div class="flex justify-center space-x-2 mb-4">
+            <button onclick="changeLanguage('am')" id="btn-am" class="px-3 py-1 text-xs rounded-full bg-green-500 text-gray-900 font-bold transition-all">አማርኛ</button>
+            <button onclick="changeLanguage('en')" id="btn-en" class="px-3 py-1 text-xs rounded-full bg-gray-700 text-gray-300 font-semibold hover:bg-gray-600 transition-all">English</button>
+            <button onclick="changeLanguage('om')" id="btn-om" class="px-3 py-1 text-xs rounded-full bg-gray-700 text-gray-300 font-semibold hover:bg-gray-600 transition-all">Oromoo</button>
+        </div>
         <h1 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wider text-white">
             Green Light <span class="text-green-500">Automotive Center</span>
         </h1>
@@ -22,73 +28,86 @@
     </header>
 
     <!-- Main Container -->
-    <main class="flex-grow flex items-center justify-center p-4 my-6">
+    <main class="flex-grow flex flex-col items-center justify-center p-4 my-4">
+        
+        <!-- Logo Container -->
+        <div class="mb-6 flex justify-center">
+            <div class="w-24 h-24 bg-gray-800 border-2 border-green-500 rounded-full flex items-center justify-center p-2 shadow-xl overflow-hidden">
+                <!-- Replace 'logo.png' with your repository image path or hosted logo URL -->
+                <img src="logo.png" alt="Green Light Logo" onerror="this.src='https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&q=80&w=200';" class="object-contain w-full h-full rounded-full">
+            </div>
+        </div>
+
         <div class="bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl p-6 md:p-8 w-full max-w-xl transition-all duration-300">
             
             <!-- Form Header -->
-            <div id="form-header" class="text-center mb-8">
-                <h2 class="text-xl md:text-2xl font-bold text-white mb-2">Share Your Experience</h2>
-                <p class="text-gray-400 text-sm">Help us keep your drive smooth and safe. Your feedback matters.</p>
+            <div id="form-header" class="text-center mb-6">
+                <h2 id="txt-title" class="text-xl md:text-2xl font-bold text-white mb-2">የእርስዎን ተሞክሮ ያካፍሉን</h2>
+                <p id="txt-subtitle" class="text-gray-400 text-sm">አገልግሎታችንን ይበልጥ የተሻለ ለማድረግ የእርስዎ አስተያየት በእጅጉ ይረዳናል።</p>
             </div>
 
             <!-- Success Message (Hidden Initially) -->
-            <div id="success-message" class="hidden text-center py-12 animate-fade-in">
+            <div id="success-message" class="hidden text-center py-12">
                 <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500 text-gray-900 rounded-full text-3xl mb-4 shadow-lg shadow-green-500/20">
                     <i class="fas fa-check"></i>
                 </div>
-                <h3 class="text-2xl font-bold text-white mb-2">Thank You!</h3>
-                <p class="text-gray-400 max-w-sm mx-auto">Your feedback has been successfully recorded. We appreciate your support in making Green Light even better.</p>
-                <button onclick="window.location.reload()" class="mt-6 text-green-400 hover:text-green-300 text-sm font-semibold underline underline-offset-4 tracking-wide">
-                    Submit another response
+                <h3 id="txt-success-title" class="text-2xl font-bold text-white mb-2">እናመሰግናለን!</h3>
+                <p id="txt-success-desc" class="text-gray-400 max-w-sm mx-auto">አስተያየትዎ በተሳካ ሁኔታ ተመዝግቧል።</p>
+                <button onclick="window.location.reload()" id="txt-reload-btn" class="mt-6 text-green-400 hover:text-green-300 text-sm font-semibold underline underline-offset-4 tracking-wide">
+                    ሌላ አስተያየት ይላኩ
                 </button>
             </div>
 
             <!-- Feedback Form -->
-            <form id="feedback-form" class="space-y-5">
+            <form id="feedback-form" class="space-y-4">
                 
-                <!-- Full Name -->
+                <!-- Full Name (Optional) -->
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Full Name</label>
+                    <label id="lbl-name" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">ሙሉ ስም (አማራጭ)</label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500"><i class="fas fa-user"></i></span>
-                        <input type="text" id="customerName" required placeholder="John Doe" 
-                               class="w-full bg-gray-950 border border-gray-700 rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-green-500 transition-colors">
+                        <input type="text" id="customerName" placeholder="Abebe Bikila" 
+                               class="w-full bg-gray-950 border border-gray-700 rounded-lg pl-10 pr-4 py-2.5 text-white placeholder-gray-700 focus:outline-none focus:border-green-500 transition-colors">
                     </div>
                 </div>
 
-                <!-- Phone Number -->
+                <!-- Phone Number (Optional) -->
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Phone Number</label>
+                    <label id="lbl-phone" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">ስልክ ቁጥር (አማራጭ)</label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500"><i class="fas fa-phone"></i></span>
-                        <input type="tel" id="phoneNumber" required placeholder="0911..." 
-                               class="w-full bg-gray-950 border border-gray-700 rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-green-500 transition-colors">
+                        <input type="tel" id="phoneNumber" placeholder="0911..." 
+                               class="w-full bg-gray-950 border border-gray-700 rounded-lg pl-10 pr-4 py-2.5 text-white placeholder-gray-700 focus:outline-none focus:border-green-500 transition-colors">
                     </div>
                 </div>
 
-                <!-- Service Type -->
+                <!-- Plate Number (Optional) -->
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Service Received</label>
+                    <label id="lbl-plate" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">የሰሌዳ ቁጥር (አማራጭ)</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500"><i class="fas fa-car-rear"></i></span>
+                        <input type="text" id="plateNumber" placeholder="AA A 12345" 
+                               class="w-full bg-gray-950 border border-gray-700 rounded-lg pl-10 pr-4 py-2.5 text-white placeholder-gray-700 focus:outline-none focus:border-green-500 transition-colors uppercase">
+                    </div>
+                </div>
+
+                <!-- Service Type (Required) -->
+                <div>
+                    <label id="lbl-service" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">ያገኙት አገልግሎት</label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500"><i class="fas fa-tools"></i></span>
                         <select id="serviceType" required 
-                                class="w-full bg-gray-950 border border-gray-700 rounded-lg pl-10 pr-4 py-3 text-white focus:outline-none focus:border-green-500 transition-colors appearance-none">
-                            <option value="" disabled selected class="text-gray-600">Select service type...</option>
-                            <option value="Routine Maintenance">Routine Maintenance & Oil Change</option>
-                            <option value="Engine Diagnostics">Engine Diagnostics & Repair</option>
-                            <option value="Brake Service">Brake System Service</option>
-                            <option value="Suspension Alignment">Suspension & Wheel Alignment</option>
-                            <option value="Electrical Bodywork">Electrical System / Bodywork</option>
-                            <option value="Other">Other Service</option>
+                                class="w-full bg-gray-950 border border-gray-700 rounded-lg pl-10 pr-4 py-2.5 text-white focus:outline-none focus:border-green-500 transition-colors appearance-none">
+                            <!-- Options updated dynamically via Javascript standard definitions below -->
                         </select>
                         <span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-500"><i class="fas fa-chevron-down text-xs"></i></span>
                     </div>
                 </div>
 
-                <!-- Star Rating -->
+                <!-- Star Rating (Required) -->
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">Overall Rating</label>
-                    <div class="flex items-center space-x-2 star-rating py-2">
+                    <label id="lbl-rating" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">አጠቃላይ ደረጃ</label>
+                    <div class="flex items-center space-x-2 star-rating py-1">
                         <input type="hidden" id="ratingValue" value="0" required>
                         <button type="button" data-rating="1" class="star-btn text-2xl text-gray-600 hover:text-yellow-400 focus:outline-none"><i class="fas fa-star"></i></button>
                         <button type="button" data-rating="2" class="star-btn text-2xl text-gray-600 hover:text-yellow-400 focus:outline-none"><i class="fas fa-star"></i></button>
@@ -100,30 +119,30 @@
 
                 <!-- Comments -->
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Comments / Suggestions</label>
-                    <textarea id="comments" rows="3" placeholder="Tell us what we did well or how we can improve..." 
-                              class="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-green-500 transition-colors resize-none"></textarea>
+                    <label id="lbl-comments" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">አስተያየት ወይም ጥቆማ</label>
+                    <textarea id="comments" rows="3" placeholder="..." 
+                              class="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-2.5 text-white placeholder-gray-700 focus:outline-none focus:border-green-500 transition-colors resize-none"></textarea>
                 </div>
 
                 <!-- Recommendation Radio -->
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Would you recommend us to friends or family?</label>
+                    <label id="lbl-recommend" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">ይህንን ማዕከል ለሌሎች ይጠቁማሉ?</label>
                     <div class="flex items-center space-x-6">
                         <label class="flex items-center space-x-2 cursor-pointer group">
                             <input type="radio" name="recommendation" value="Yes" checked class="accent-green-500 w-4 h-4">
-                            <span class="text-sm text-gray-300 group-hover:text-white transition-colors">Definitely Yes</span>
+                            <span id="txt-yes" class="text-sm text-gray-300 group-hover:text-white transition-colors">አዎ፣ እጠቁማለሁ</span>
                         </label>
                         <label class="flex items-center space-x-2 cursor-pointer group">
                             <input type="radio" name="recommendation" value="No" class="accent-green-500 w-4 h-4">
-                            <span class="text-sm text-gray-300 group-hover:text-white transition-colors">No</span>
+                            <span id="txt-no" class="text-sm text-gray-300 group-hover:text-white transition-colors">አልጠቁምም</span>
                         </label>
                     </div>
                 </div>
 
                 <!-- Submit Button -->
                 <button type="submit" id="submit-btn" 
-                        class="w-full bg-green-500 hover:bg-green-600 text-gray-900 font-bold uppercase tracking-wider text-sm py-4 px-6 rounded-lg shadow-lg shadow-green-500/10 hover:shadow-green-500/20 active:scale-[0.99] transition-all flex items-center justify-center space-x-2">
-                    <span>Submit Feedback</span>
+                        class="w-full bg-green-500 hover:bg-green-600 text-gray-900 font-bold uppercase tracking-wider text-sm py-3 px-6 rounded-lg shadow-lg active:scale-[0.99] transition-all flex items-center justify-center space-x-2 mt-2">
+                    <span id="txt-submit">አስተያየት ያስገቡ</span>
                 </button>
             </form>
         </div>
@@ -134,12 +153,145 @@
         &copy; 2026 Green Light Automotive Center. All rights reserved.
     </footer>
 
-    <!-- Frontend Logic -->
+    <!-- Multilingual Translation Script Logic -->
     <script>
-        // REPLACE THIS STRING with your deployed Google Web App URL from Part 1
         const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_WEB_APP_URL_HERE";
 
-        // Interactive Star Rating Logic
+        const translations = {
+            am: {
+                title: "የእርስዎን ተሞክሮ ያካፍሉን",
+                subtitle: "አገልግሎታችንን ይበልጥ የተሻለ ለማድረግ የእርስዎ አስተያየት በእጅጉ ይረዳናል።",
+                name: "ሙሉ ስም (አማራጭ)",
+                phone: "ስልክ ቁጥር (አማራጭ)",
+                plate: "የሰሌዳ ቁጥር (አማራጭ)",
+                service: "ያገኙት አገልግሎት",
+                rating: "አጠቃላይ ደረጃ",
+                comments: "አስተያየት ወይም ጥቆማ",
+                recommend: "ይህንን ማዕከል ለሌሎች ይጠቁማሉ?",
+                yes: "አዎ፣ እጠቁማለሁ",
+                no: "አልጠቁምም",
+                submit: "አስተያየት ያስገቡ",
+                processing: "በማስገባት ላይ...",
+                selectService: "የአገልግሎት አይነት ይምረጡ...",
+                successTitle: "እናመሰግናለን!",
+                successDesc: "አስተያየትዎ በተሳካ ሁኔታ ተመዝግቧል። እኛን ስለመረጡ እናመሰግናለን።",
+                reload: "ሌላ አስተያየት ይላኩ",
+                services: [
+                    "የመኪና እጥበት (Car Wash)",
+                    "የዘይት እና መደበኛ ጥገና (Routine Maintenance)",
+                    "የሞተር ምርመራ እና ጥገና (Engine Diagnostics)",
+                    "የፍሬን ሲስተም ጥገና (Brake Service)",
+                    "የታችኛው ክፍል እና ዊል አላይመንት (Suspension & Alignment)",
+                    "የኤሌክትሪክ እና የቆርቆሮ ስራ (Electrical & Bodywork)",
+                    "ሌላ አገልግሎት (Other)"
+                ]
+            },
+            en: {
+                title: "Share Your Experience",
+                subtitle: "Help us keep your drive smooth and safe. Your feedback matters.",
+                name: "Full Name (Optional)",
+                phone: "Phone Number (Optional)",
+                plate: "Plate Number (Optional)",
+                service: "Service Received",
+                rating: "Overall Rating",
+                comments: "Comments / Suggestions",
+                recommend: "Would you recommend us to friends or family?",
+                yes: "Definitely Yes",
+                no: "No",
+                submit: "Submit Feedback",
+                processing: "Processing...",
+                selectService: "Select service type...",
+                successTitle: "Thank You!",
+                successDesc: "Your feedback has been successfully recorded. We appreciate your support!",
+                reload: "Submit another response",
+                services: [
+                    "Car Wash",
+                    "Routine Maintenance & Oil Change",
+                    "Engine Diagnostics & Repair",
+                    "Brake System Service",
+                    "Suspension & Wheel Alignment",
+                    "Electrical System / Bodywork",
+                    "Other Service"
+                ]
+            },
+            om: {
+                title: "Muuxannoo Keessan Nuuf Qoodaa",
+                subtitle: "Tajaajila keenya caalaatti fooyyessuuf yaadonni keessan baay'ee nu gargaaru.",
+                name: "Maqaa Guutuu (Filannoo)",
+                phone: "Lakkofsa Bilbilaa (Filannoo)",
+                plate: "Lakkofsa Gabatee (Filannoo)",
+                service: "Tajaajila Argattan",
+                rating: "Sadarkaa Tajaajilaa",
+                comments: "Yaada ykn Yaada Fooyya'iinsaa",
+                recommend: "Gara fuulduraatti namoota biroof nu firi qoodduu?",
+                yes: "Eeyyee, nan qooda",
+                no: "Iyyuu hin qoodu",
+                submit: "Yaada Keessan Ergaa",
+                processing: "Ergamaa jira...",
+                selectService: "Gosa tajaajilaa filadha qaba...",
+                successTitle: "Galatoomaa!",
+                successDesc: "Yaanni keessan milkiidhaan galmaa'ee jira. Nu filachuu keessaniif galatoomaa.",
+                reload: "Yaada dabalataa ergi",
+                services: [
+                    "Dhiqannaa Konkolaataa (Car Wash)",
+                    "Suphaa Idilee fi Jijjiirraa Zaayitii",
+                    "Qorannaa fi Suphaa Matooraa",
+                    "Suphaa Sirna Fireenii",
+                    "Miseensa Jalaa fi Alayimentii Fiitii",
+                    "Hojii Elektriikaa fi Booridii",
+                    "Tajaajila Biroo"
+                ]
+            }
+        };
+
+        let currentLang = 'am';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+            
+            // Update Text Nodes
+            document.getElementById('txt-title').innerText = t.title;
+            document.getElementById('txt-subtitle').innerText = t.subtitle;
+            document.getElementById('lbl-name').innerText = t.name;
+            document.getElementById('lbl-phone').innerText = t.phone;
+            document.getElementById('lbl-plate').innerText = t.plate;
+            document.getElementById('lbl-service').innerText = t.service;
+            document.getElementById('lbl-rating').innerText = t.rating;
+            document.getElementById('lbl-comments').innerText = t.comments;
+            document.getElementById('lbl-recommend').innerText = t.recommend;
+            document.getElementById('txt-yes').innerText = t.yes;
+            document.getElementById('txt-no').innerText = t.no;
+            document.getElementById('txt-submit').innerText = t.submit;
+            document.getElementById('txt-success-title').innerText = t.successTitle;
+            document.getElementById('txt-success-desc').innerText = t.successDesc;
+            document.getElementById('txt-reload-btn').innerText = t.reload;
+
+            // Update Dynamic Dropdown
+            const selectEl = document.getElementById('serviceType');
+            selectEl.innerHTML = `<option value="" disabled selected class="text-gray-600">${t.selectService}</option>`;
+            t.services.forEach(srv => {
+                const opt = document.createElement('option');
+                opt.value = srv;
+                opt.innerText = srv;
+                selectEl.appendChild(opt);
+            });
+
+            // Update Active Tab Pill Highlights
+            ['am', 'en', 'om'].forEach(l => {
+                const btn = document.getElementById(`btn-${l}`);
+                if (l === lang) {
+                    btn.className = "px-3 py-1 text-xs rounded-full bg-green-500 text-gray-900 font-bold transition-all";
+                } else {
+                    btn.className = "px-3 py-1 text-xs rounded-full bg-gray-700 text-gray-300 font-semibold hover:bg-gray-600 transition-all";
+                }
+            });
+        }
+
+        // Initialize Form with default Language (Amharic)
+        changeLanguage('am');
+
+        // Stars Interactive Rating Elements
         const starButtons = document.querySelectorAll('.star-btn');
         const ratingInput = document.getElementById('ratingValue');
 
@@ -160,7 +312,7 @@
             });
         });
 
-        // Form Submission Logic
+        // Form Submit Handler
         const form = document.getElementById('feedback-form');
         const submitBtn = document.getElementById('submit-btn');
         const successMessage = document.getElementById('success-message');
@@ -170,45 +322,39 @@
             e.preventDefault();
 
             if (ratingInput.value === "0") {
-                alert("Please select a star rating before submitting.");
+                alert(currentLang === 'am' ? "እባክዎ መጀመሪያ ደረጃ ይምረጡ።" : (currentLang === 'en' ? "Please select a star rating." : "Maaloo dura sadarkaa filadhaa."));
                 return;
             }
 
-            // UI Feedback: Loading State
             submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="fas fa-spinner animate-spin text-lg"></i> <span>Processing...</span>`;
+            submitBtn.innerHTML = `<i class="fas fa-spinner animate-spin text-lg"></i> <span>${translations[currentLang].processing}</span>`;
 
-            // Extract values
             const payload = {
-                customerName: document.getElementById('customerName').value,
-                phoneNumber: document.getElementById('phoneNumber').value,
+                customerName: document.getElementById('customerName').value || "Anonymous",
+                phoneNumber: document.getElementById('phoneNumber').value || "Not Provided",
+                plateNumber: document.getElementById('plateNumber').value || "Not Provided",
                 serviceType: document.getElementById('serviceType').value,
                 rating: ratingInput.value,
-                comments: document.getElementById('comments').value,
+                comments: document.getElementById('comments').value || "No comment",
                 recommendation: document.querySelector('input[name="recommendation"]:checked').value
             };
 
             try {
-                // Send JSON payload to Google Apps Script via native fetch API
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors', // Prevents local CORS blocks safely for Apps Script redirection
+                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
 
-                // Display success layout smoothly
                 form.classList.add('hidden');
                 formHeader.classList.add('hidden');
                 successMessage.classList.remove('hidden');
-
             } catch (error) {
-                console.error('Error submitting form:', error);
-                alert('Something went wrong. Please check your network connection and try again.');
-                
-                // Reset submit button state on failure
+                console.error(error);
+                alert("Submission failed. Check network link.");
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = `<span>Submit Feedback</span>`;
+                submitBtn.innerHTML = `<span>${translations[currentLang].submit}</span>`;
             }
         });
     </script>
