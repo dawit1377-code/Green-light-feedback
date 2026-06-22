@@ -481,6 +481,256 @@ Your feedback helps us improve.
 </div>
 
 <!-- PART B WILL GO HERE -->
+```html
+<script>
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbyHxmqkp0w1n905deIqGZtsg_WozeWaHF5qmsQRMd1Ori-hyUngJLyowrIiDPsmucsU/exec";
+
+let currentStep = 1;
+
+let feedbackData = {
+  overallRating: 0,
+  department: "",
+  employee: "",
+  nps: 0
+};
+
+const employees = {
+  "Mechanical":["Chalachew","Mikiyas","Angesom"],
+  "Electrical":["Daniel"],
+  "Engine Shop":["Chalachew"],
+  "Car Wash":["Asebe"],
+  "Security":[
+    "Ato Tsegaye",
+    "Ato Ermiyas",
+    "Ato Muluneh",
+    "Ato Kassa",
+    "Ato Asebe"
+  ],
+  "Customer Service":["Aberham"],
+  "Finance":["Elias"]
+};
+
+function updateProgress(){
+
+  const percent =
+  (currentStep / 7) * 100;
+
+  document.getElementById("progressBar")
+    .style.width = percent + "%";
+
+}
+
+function showStep(step){
+
+  document
+    .querySelectorAll(".step")
+    .forEach(s => s.classList.remove("active"));
+
+  document
+    .getElementById("step" + step)
+    .classList.add("active");
+
+  currentStep = step;
+
+  updateProgress();
+
+}
+
+function nextStep(){
+
+  if(currentStep < 7){
+
+    showStep(currentStep + 1);
+
+  }
+
+}
+
+function prevStep(){
+
+  if(currentStep > 1){
+
+    showStep(currentStep - 1);
+
+  }
+
+}
+
+function setRating(field,value,element){
+
+  feedbackData[field] = value;
+
+  element.parentElement
+    .querySelectorAll(".star-btn")
+    .forEach(btn => btn.classList.remove("selected"));
+
+  element.classList.add("selected");
+
+}
+
+function selectDepartment(dept,element){
+
+  feedbackData.department = dept;
+
+  document
+    .querySelectorAll(".department-btn")
+    .forEach(btn => btn.classList.remove("selected"));
+
+  element.classList.add("selected");
+
+  const employeeSelect =
+  document.getElementById("employee");
+
+  employeeSelect.innerHTML = "";
+
+  employees[dept].forEach(emp => {
+
+    const option =
+    document.createElement("option");
+
+    option.value = emp;
+    option.textContent = emp;
+
+    employeeSelect.appendChild(option);
+
+  });
+
+}
+
+function buildNPS(){
+
+  const grid =
+  document.getElementById("npsGrid");
+
+  for(let i=0;i<=10;i++){
+
+    const btn =
+    document.createElement("div");
+
+    btn.className = "nps-btn";
+
+    btn.textContent = i;
+
+    btn.onclick = function(){
+
+      feedbackData.nps = i;
+
+      document
+        .querySelectorAll(".nps-btn")
+        .forEach(x =>
+          x.classList.remove("selected"));
+
+      btn.classList.add("selected");
+
+    };
+
+    grid.appendChild(btn);
+
+  }
+
+}
+
+async function submitFeedback(){
+
+  feedbackData.employee =
+  document.getElementById("employee").value;
+
+  const payload = {
+
+    language:
+      document.getElementById("language").value,
+
+    overallRating:
+      feedbackData.overallRating,
+
+    department:
+      feedbackData.department,
+
+    employee:
+      feedbackData.employee,
+
+    serviceQuality:
+      document.getElementById("serviceQuality").value,
+
+    speed:
+      document.getElementById("speed").value,
+
+    professionalism:
+      document.getElementById("professionalism").value,
+
+    communication:
+      document.getElementById("communication").value,
+
+    cleanliness:
+      document.getElementById("cleanliness").value,
+
+    nps:
+      feedbackData.nps,
+
+    comment:
+      document.getElementById("comment").value,
+
+    phone:
+      document.getElementById("phone").value,
+
+    plate:
+      document.getElementById("plate").value
+
+  };
+
+  try{
+
+    await fetch(API_URL,{
+
+      method:"POST",
+      mode:"no-cors",
+      body:JSON.stringify(payload)
+
+    });
+
+  } catch(err){
+
+    console.log(err);
+
+  }
+
+  document
+    .querySelectorAll(".step")
+    .forEach(s => s.classList.remove("active"));
+
+  document
+    .getElementById("thankyou")
+    .classList.add("active");
+
+  const review =
+  document.getElementById("reviewSection");
+
+  review.innerHTML = "";
+
+  if(
+    Number(payload.overallRating) >= 4 &&
+    Number(payload.nps) >= 8
+  ){
+
+    review.innerHTML = `
+      <a class="review-btn"
+      href="https://maps.app.goo.gl/G32nzPDEE2bhmhT57"
+      target="_blank">
+      Leave Google Review
+      </a>
+    `;
+
+  }
+
+}
+
+buildNPS();
+updateProgress();
+
+</script>
+```
 
 </body>
 </html>
