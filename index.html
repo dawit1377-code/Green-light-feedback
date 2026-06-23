@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Portal - Green Light Automotive Center</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <style>
@@ -26,21 +25,23 @@
 
     <header class="bg-slate-900/40 backdrop-blur-md border-b border-slate-800/50 py-5 px-4 sticky top-0 z-40">
         <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3">
-                <div class="bg-green-500 text-slate-950 px-3 py-2.5 rounded-xl shadow-lg shadow-green-500/20 flex items-center justify-center gap-1">
-                    <i class="fa-solid fa-car text-base"></i>
-                    <i class="fa-solid fa-wrench text-xs"></i>
+            <div class="flex flex-col sm:flex-row items-center text-center sm:text-left gap-3 w-full sm:w-auto justify-center">
+                <div class="bg-green-500 text-slate-950 px-3 py-2.5 rounded-xl shadow-lg shadow-green-500/20 flex items-center justify-center gap-1.5 shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124l-.321-5.128a3.375 3.375 0 0 0-3.06-3.161l-10.165-.677a3.375 3.375 0 0 0-3.597 2.914l-.315 5.043A1.127 1.127 0 0 0 5.02 18.75h1.125" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.83-5.83m0 0a4.5 4.5 0 1 0-6.36-6.36 4.5 4.5 0 0 0 6.36 6.36zM11.42 15.17a4.5 4.5 0 0 0 6.36-6.36" />
+                    </svg>
                 </div>
-                <div class="text-left">
-                    <h1 id="txt-company-name" class="text-lg md:text-xl font-black uppercase tracking-wider text-white">
-                        ግሪን ላይት <span class="text-green-400">የመኪና ጥገና ማዕከል</span>
-                    </h1>
-                    <p id="txt-tagline" class="text-slate-500 text-[10px] tracking-widest uppercase">የመኪናዎ የደህንነት አጋር</p>
+                <div>
+                    <h1 id="txt-company-name" class="text-lg md:text-xl font-black uppercase tracking-wider text-white"></h1>
+                    <p id="txt-tagline" class="text-slate-500 text-[10px] tracking-widest uppercase"></p>
                 </div>
             </div>
             
-            <div class="flex items-center space-x-1.5 bg-slate-950/40 p-1 rounded-xl border border-slate-800/60">
-                <button onclick="changeLanguage('am')" id="btn-am" class="px-3 py-1 text-xs rounded-lg font-bold transition-all">አማርኛ</button>
+            <div class="flex items-center space-x-1.5 bg-slate-950/40 p-1 rounded-xl border border-slate-800/60 shrink-0">
+                <button onclick="changeLanguage('am')" id="btn-am" class="px-3 py-1 text-xs rounded-lg font-semibold transition-all">አማርኛ</button>
                 <button onclick="changeLanguage('en')" id="btn-en" class="px-3 py-1 text-xs rounded-lg font-semibold transition-all">EN</button>
                 <button onclick="changeLanguage('om')" id="btn-om" class="px-3 py-1 text-xs rounded-lg font-semibold transition-all">OM</button>
             </div>
@@ -51,8 +52,8 @@
         
         <div id="hero-block" class="text-center mb-8 max-w-xl">
             <span class="text-green-400 text-xs font-bold uppercase tracking-widest bg-green-500/10 px-3 py-1 rounded-full border border-green-500/20">Operations Registry</span>
-            <h2 id="txt-title" class="text-3xl font-black text-white mt-3 tracking-tight">የእርስዎን ተሞክሮ ያካፍሉን</h2>
-            <p id="txt-subtitle" class="text-slate-400 text-sm mt-2 leading-relaxed">አገልግሎታችንን ይበልጥ የተሻለ ለማድረግ የእርስዎ አስተያየት በእጅጉ ይረዳናል።</p>
+            <h2 id="txt-title" class="text-3xl font-black text-white mt-3 tracking-tight"></h2>
+            <p id="txt-subtitle" class="text-slate-400 text-sm mt-2 leading-relaxed"></p>
         </div>
 
         <div id="form-container" class="glass-card rounded-2xl shadow-2xl p-6 md:p-8 w-full max-w-xl transition-all duration-300">
@@ -61,79 +62,72 @@
                 <div id="success-icon" class="inline-flex items-center justify-center w-16 h-16 rounded-full text-3xl mb-4 shadow-xl"></div>
                 <h3 id="txt-success-title" class="text-2xl font-black text-white mb-2"></h3>
                 <p id="txt-success-desc" class="text-slate-400 text-sm max-w-sm mx-auto leading-relaxed"></p>
-                <button onclick="window.location.reload()" id="txt-reload-btn" class="mt-6 px-5 py-2 rounded-xl border border-slate-800 hover:border-green-500 hover:text-green-400 text-slate-300 text-xs font-semibold transition-all">
-                    ሌላ አስተያየት ይላኩ
-                </button>
+                <button onclick="window.location.reload()" id="txt-reload-btn" class="mt-6 px-5 py-2 rounded-xl border border-slate-800 hover:border-green-500 hover:text-green-400 text-slate-300 text-xs font-semibold transition-all"></button>
             </div>
 
             <form id="feedback-form" class="space-y-4">
                 <div>
-                    <label id="lbl-name" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">ሙሉ ስም (አማራጭ)</label>
+                    <label id="lbl-name" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1"></label>
                     <div class="relative">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fas fa-user text-xs"></i></span>
-                        <input type="text" id="customerName" placeholder="Abebe" class="w-full bg-slate-950/40 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-700 focus:outline-none focus:border-green-500 glow-green transition-all">
+                        <input type="text" id="customerName" placeholder="Abebe" class="w-full bg-slate-950/40 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-700 focus:outline-none focus:border-green-500 glow-green transition-all">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label id="lbl-phone" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">ስልክ ቁጥር (አማራጭ)</label>
+                        <label id="lbl-phone" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1"></label>
                         <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fas fa-phone text-xs"></i></span>
-                            <input type="tel" id="phoneNumber" placeholder="0911..." class="w-full bg-slate-950/40 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-700 focus:outline-none focus:border-green-500 glow-green transition-all">
+                            <input type="tel" id="phoneNumber" placeholder="0911..." class="w-full bg-slate-950/40 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-700 focus:outline-none focus:border-green-500 glow-green transition-all">
                         </div>
                     </div>
                     <div>
-                        <label id="lbl-plate" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">የሰሌዳ ቁጥር (አማራጭ)</label>
+                        <label id="lbl-plate" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1"></label>
                         <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fas fa-car-rear text-xs"></i></span>
-                            <input type="text" id="plateNumber" placeholder="AA B 12345" class="w-full bg-slate-950/40 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-700 focus:outline-none focus:border-green-500 glow-green transition-all uppercase">
+                            <input type="text" id="plateNumber" placeholder="AA B 12345" class="w-full bg-slate-950/40 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-700 focus:outline-none focus:border-green-500 glow-green transition-all uppercase">
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <label id="lbl-service" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">ያገኙት አገልግሎት</label>
+                    <label id="lbl-service" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1"></label>
                     <div class="relative">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fas fa-tools text-xs"></i></span>
-                        <select id="serviceType" required class="w-full bg-slate-950/40 border border-slate-800 rounded-xl pl-10 pr-10 py-2.5 text-sm text-white focus:outline-none focus:border-green-500 glow-green transition-all appearance-none"></select>
-                        <span class="absolute inset-y-0 right-0 flex items-center pr-3.5 text-slate-500 pointer-events-none"><i class="fas fa-chevron-down text-xs"></i></span>
+                        <select id="serviceType" required class="w-full bg-slate-950/40 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-green-500 glow-green transition-all appearance-none"></select>
                     </div>
                 </div>
 
                 <div>
-                    <label id="lbl-rating" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">አጠቃላይ ደረጃ</label>
+                    <label id="lbl-rating" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1"></label>
                     <div class="flex items-center space-x-3 bg-slate-950/30 p-2.5 border border-slate-800/60 rounded-xl justify-center star-rating">
                         <input type="hidden" id="ratingValue" value="0" required>
-                        <button type="button" data-rating="1" class="star-btn text-2xl text-slate-700 hover:scale-110 transition-transform focus:outline-none"><i class="fas fa-star"></i></button>
-                        <button type="button" data-rating="2" class="star-btn text-2xl text-slate-700 hover:scale-110 transition-transform focus:outline-none"><i class="fas fa-star"></i></button>
-                        <button type="button" data-rating="3" class="star-btn text-2xl text-slate-700 hover:scale-110 transition-transform focus:outline-none"><i class="fas fa-star"></i></button>
-                        <button type="button" data-rating="4" class="star-btn text-2xl text-slate-700 hover:scale-110 transition-transform focus:outline-none"><i class="fas fa-star"></i></button>
-                        <button type="button" data-rating="5" class="star-btn text-2xl text-yellow-400 scale-110 transition-transform focus:outline-none"><i class="fas fa-star"></i></button>
+                        <button type="button" data-rating="1" class="star-btn text-2xl text-slate-700 hover:scale-110 transition-transform focus:outline-none">★</button>
+                        <button type="button" data-rating="2" class="star-btn text-2xl text-slate-700 hover:scale-110 transition-transform focus:outline-none">★</button>
+                        <button type="button" data-rating="3" class="star-btn text-2xl text-slate-700 hover:scale-110 transition-transform focus:outline-none">★</button>
+                        <button type="button" data-rating="4" class="star-btn text-2xl text-slate-700 hover:scale-110 transition-transform focus:outline-none">★</button>
+                        <button type="button" data-rating="5" class="star-btn text-2xl text-slate-700 hover:scale-110 transition-transform focus:outline-none">★</button>
                     </div>
                 </div>
 
                 <div>
-                    <label id="lbl-comments" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">አስተያየት ወይም ጥቆማ</label>
+                    <label id="lbl-comments" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1"></label>
                     <textarea id="comments" rows="2" class="w-full bg-slate-950/40 border border-slate-800 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-green-500 glow-green transition-all resize-none"></textarea>
                 </div>
 
                 <div>
-                    <label id="lbl-recommend" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">ይህንን ማዕከል ለሌሎች ይጠቁማሉ?</label>
+                    <label id="lbl-recommend" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5"></label>
                     <div class="flex items-center space-x-6 bg-slate-950/20 border border-slate-800/40 p-2.5 rounded-xl justify-center">
                         <label class="flex items-center space-x-2 cursor-pointer group">
                             <input type="radio" name="recommendation" value="Yes" checked class="accent-green-500 w-3.5 h-3.5">
-                            <span id="txt-yes" class="text-xs text-slate-300 font-medium group-hover:text-white transition-colors">አዎ</span>
+                            <span id="txt-yes" class="text-xs text-slate-300 font-medium group-hover:text-white transition-colors"></span>
                         </label>
                         <label class="flex items-center space-x-2 cursor-pointer group">
                             <input type="radio" name="recommendation" value="No" class="accent-green-500 w-3.5 h-3.5">
-                            <span id="txt-no" class="text-xs text-slate-300 font-medium group-hover:text-white transition-colors">አልጠቁምም</span>
+                            <span id="txt-no" class="text-xs text-slate-300 font-medium group-hover:text-white transition-colors"></span>
                         </label>
                     </div>
                 </div>
 
                 <button type="submit" id="submit-btn" class="w-full bg-green-500 hover:bg-green-400 text-slate-950 font-black uppercase py-3 rounded-xl shadow-xl shadow-green-500/10 hover:shadow-green-500/20 hover:-translate-y-0.5 transition-all flex items-center justify-center space-x-2 mt-2 tracking-wider text-sm">
-                    <span id="txt-submit">አስተያየት ያስገቡ</span>
+                    <span id="txt-submit"></span>
                 </button>
             </form>
         </div>
@@ -141,9 +135,7 @@
         <div id="admin-dashboard" class="hidden w-full max-w-5xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-6 transition-all duration-300">
             <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center border-b border-slate-800 pb-5 mb-5 gap-4">
                 <div>
-                    <h2 class="text-xl font-black text-white flex items-center gap-2">
-                        <i class="fas fa-chart-line text-green-400"></i> Management Intelligence Analytics
-                    </h2>
+                    <h2 class="text-xl font-black text-white flex items-center gap-2">Management Intelligence Analytics</h2>
                     <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-0.5">Green Light Automotive Center Performance Monitor</p>
                 </div>
                 <div class="flex flex-wrap items-center gap-2 w-full lg:w-auto">
@@ -153,9 +145,7 @@
                         <option value="monthly">Monthly Insight (Last 30 Days)</option>
                         <option value="all">Historical Summary (All Time)</option>
                     </select>
-                    <button onclick="exportFilteredDatasetToExcel()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all">
-                        <i class="fas fa-file-excel"></i> Export Excel
-                    </button>
+                    <button onclick="exportFilteredDatasetToExcel()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl text-xs font-bold transition-all">Export Excel</button>
                     <button onclick="closeAdminView()" class="bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold tracking-wide transition-all border border-slate-700">Exit Panel</button>
                 </div>
             </div>
@@ -225,7 +215,7 @@
                     <h3 id="modal-cust-name" class="text-base font-black text-white">Customer Profile</h3>
                     <p id="modal-timestamp" class="text-[9px] text-slate-500 mt-0.5">Timestamp</p>
                 </div>
-                <button onclick="closeDetailModal()" class="text-slate-400 hover:text-white bg-slate-800 h-6 w-6 rounded-full flex items-center justify-center"><i class="fas fa-times text-xs"></i></button>
+                <button onclick="closeDetailModal()" class="text-slate-400 hover:text-white bg-slate-800 h-6 w-6 rounded-full flex items-center justify-center">×</button>
             </div>
             <div class="space-y-3 text-xs">
                 <div class="grid grid-cols-2 gap-2">
@@ -262,9 +252,7 @@
 
     <footer class="bg-slate-950/40 backdrop-blur-md py-4 px-6 text-center border-t border-slate-900 text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2 z-10">
         <div>&copy; 2026 Green Light Automotive Center. All rights reserved.</div>
-        <button onclick="promptAdminLogin()" class="text-slate-600 hover:text-green-400 font-semibold transition-colors flex items-center gap-1.5 py-1 px-2 rounded hover:bg-slate-900/60">
-            <i class="fas fa-lock text-[10px]"></i> Manager Portal
-        </button>
+        <button onclick="promptAdminLogin()" class="text-slate-600 hover:text-green-400 font-semibold transition-colors py-1 px-2 rounded hover:bg-slate-900/60">Manager Portal</button>
     </footer>
 
     <script>
@@ -369,7 +357,7 @@
             }
         };
 
-        let currentLang = 'am';
+        let currentLang = 'en'; // FIXED: Form now automatically initialises in English catalog profile base
         let rawDatasetGlobal = [];
         let currentlyRenderedSubset = [];
         let chartInstance1 = null;
@@ -412,7 +400,9 @@
                     "px-3 py-1 text-xs rounded-lg bg-slate-800/60 text-slate-400 font-semibold hover:bg-slate-700 transition-all";
             });
         }
-        changeLanguage('am');
+        
+        // Initial setup execution
+        changeLanguage('en');
 
         const starButtons = document.querySelectorAll('.star-btn');
         const ratingInput = document.getElementById('ratingValue');
@@ -440,7 +430,7 @@
             }
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="fas fa-spinner animate-spin text-sm"></i> <span>${translations[currentLang].processing}</span>`;
+            submitBtn.innerHTML = `<span>${translations[currentLang].processing}</span>`;
 
             const payload = {
                 customerName: document.getElementById('customerName').value || "Anonymous",
@@ -463,12 +453,12 @@
                 const t = translations[currentLang];
                 if (ratingScore <= 3) {
                     document.getElementById('success-icon').className = "inline-flex items-center justify-center w-16 h-16 bg-rose-500 text-white rounded-full text-3xl mb-4";
-                    document.getElementById('success-icon').innerHTML = `<i class="fas fa-exclamation-triangle"></i>`;
+                    document.getElementById('success-icon').innerText = "!";
                     document.getElementById('txt-success-title').innerText = t.successBadTitle;
                     document.getElementById('txt-success-desc').innerText = t.successBadDesc;
                 } else {
                     document.getElementById('success-icon').className = "inline-flex items-center justify-center w-16 h-16 bg-green-500 text-slate-950 rounded-full text-3xl mb-4";
-                    document.getElementById('success-icon').innerHTML = `<i class="fas fa-check"></i>`;
+                    document.getElementById('success-icon').innerText = "✓";
                     document.getElementById('txt-success-title').innerText = t.successGoodTitle;
                     document.getElementById('txt-success-desc').innerText = t.successGoodDesc;
                 }
