@@ -22,31 +22,48 @@
 </head>
 <body class="premium-bg text-emerald-900 font-sans min-h-screen flex flex-col justify-between antialiased">
 
-    <div id="landing-page" class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center p-4 overflow-y-auto">
-        <div class="max-w-2xl w-full text-center space-y-6 my-auto">
+    <div id="landing-page" class="fixed inset-0 bg-white z-50 overflow-y-auto flex flex-col items-center justify-start min-h-screen py-8 px-4">
+        <div class="max-w-2xl w-full text-center space-y-6 my-auto pb-8">
             <div class="flex flex-col items-center space-y-3">
                 <div class="bg-white p-1.5 rounded-2xl border-2 border-emerald-600 shadow-lg flex items-center justify-center shrink-0">
-                    <img src="logo.png" alt="Green Light Logo" class="w-20 h-20 object-contain rounded-xl">
+                    <img src="logo.png" alt="Green Light Logo" class="w-24 h-24 object-contain rounded-xl">
                 </div>
-                <h1 class="text-2xl md:text-4xl font-black uppercase tracking-wider text-emerald-600">
-                    Green Light <span class="text-emerald-700 font-medium">Automotive Center</span>
+                <h1 class="text-2xl md:text-4xl font-black uppercase tracking-wider text-emerald-700">
+                    Green Light Automotive Center
                 </h1>
-                <p class="text-emerald-700 text-sm tracking-widest uppercase font-extrabold">Your Safety Partner</p>
+                <p class="text-emerald-600 text-xs tracking-widest uppercase font-extrabold">Your Safety Partner</p>
             </div>
 
             <div class="w-full h-56 md:h-72 rounded-2xl overflow-hidden border-2 border-emerald-600 shadow-md bg-emerald-50">
-                <img src="autocenter-hero.jpg" alt="Green Light Automotive Center Facility" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=1200&q=80'; console.warn('autocenter-hero.jpg not found, falling back to network placeholder.');">
+                <img src="autocenter-hero.jpg" alt="Green Light Automotive Center Facility" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=1200&q=80';">
             </div>
 
             <div class="space-y-2 px-4">
                 <h2 class="text-xl md:text-2xl font-black text-emerald-800">Welcome to Our Customer Experience Portal</h2>
-                <p class="text-emerald-600 text-sm font-bold">Please choose your preferred language to proceed / እባክዎ መጀመሪያ ቋንቋ ይምረጡ</p>
+                <p class="text-emerald-600 text-xs font-bold uppercase tracking-wide">Please choose your preferred language to proceed / እባክዎ መጀመሪያ ቋንቋ ይምረጡ</p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-lg mx-auto pt-2">
-                <button onclick="selectInitialLanguage('am')" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-base rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all tracking-wide">አማርኛ</button>
-                <button onclick="selectInitialLanguage('en')" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-base rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all tracking-wide">ENGLISH</button>
-                <button onclick="selectInitialLanguage('om')" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-base rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all tracking-wide">AFFAAN OROMOO</button>
+            <div class="grid grid-cols-1 gap-3 max-w-md mx-auto pt-2">
+                <button onclick="selectInitialLanguage('am')" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-base rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all tracking-wider">አማርኛ</button>
+                <button onclick="selectInitialLanguage('en')" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-base rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all tracking-wider">ENGLISH</button>
+                <button onclick="selectInitialLanguage('om')" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-base rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all tracking-wider">AFFAAN OROMOO</button>
+            </div>
+
+            <div class="pt-6 border-t border-emerald-100 max-w-md mx-auto">
+                <div class="grid grid-cols-3 gap-2">
+                    <div class="p-2 bg-emerald-50 rounded-xl border border-emerald-200 text-center">
+                        <p class="text-lg">🛡️</p>
+                        <p class="text-[9px] font-black text-emerald-700 uppercase tracking-tight mt-0.5">Secure Log</p>
+                    </div>
+                    <div class="p-2 bg-emerald-50 rounded-xl border border-emerald-200 text-center">
+                        <p class="text-lg">📊</p>
+                        <p class="text-[9px] font-black text-emerald-700 uppercase tracking-tight mt-0.5">Realtime Link</p>
+                    </div>
+                    <div class="p-2 bg-emerald-50 rounded-xl border border-emerald-200 text-center">
+                        <p class="text-lg">🚀</p>
+                        <p class="text-[9px] font-black text-emerald-700 uppercase tracking-tight mt-0.5">Fast Sync</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -59,8 +76,8 @@
                         <img src="logo.png" alt="Green Light Logo" class="w-16 h-16 object-contain rounded-xl" onerror="this.onerror=null; console.warn('logo.png not found in directory');">
                     </div>
                     <div>
-                        <h1 id="txt-company-name" class="text-xl md:text-2xl font-black uppercase tracking-wider text-emerald-600"></h1>
-                        <p id="txt-tagline" class="text-emerald-700 text-xs tracking-widest uppercase font-extrabold mt-0.5"></p>
+                        <h1 id="txt-company-name" class="text-xl md:text-2xl font-black uppercase tracking-wider text-emerald-700"></h1>
+                        <p id="txt-tagline" class="text-emerald-600 text-xs tracking-widest uppercase font-extrabold mt-0.5"></p>
                     </div>
                 </div>
             </div>
@@ -70,7 +87,7 @@
             
             <div id="hero-block" class="text-center mb-6 max-w-xl">
                 <span class="text-white text-xs font-black uppercase tracking-widest bg-emerald-600 px-4 py-1.5 rounded-full shadow-sm">Operations Registry</span>
-                <h2 id="txt-title" class="text-3xl md:text-4xl font-black text-emerald-600 mt-4 tracking-tight uppercase"></h2>
+                <h2 id="txt-title" class="text-3xl md:text-4xl font-black text-emerald-700 mt-4 tracking-tight uppercase"></h2>
                 <p id="txt-subtitle" class="text-emerald-800 text-base mt-2 font-bold leading-relaxed"></p>
             </div>
 
@@ -93,7 +110,7 @@
                 
                 <div id="success-message" class="hidden text-center py-6">
                     <div id="success-icon" class="inline-flex items-center justify-center w-16 h-16 rounded-full text-3xl mb-4 shadow-xl"></div>
-                    <h3 id="txt-success-title" class="text-2xl font-black text-emerald-600 mb-2"></h3>
+                    <h3 id="txt-success-title" class="text-2xl font-black text-emerald-700 mb-2"></h3>
                     <p id="txt-success-desc" class="text-emerald-800 text-sm font-bold max-w-sm mx-auto leading-relaxed"></p>
                     <button onclick="window.location.reload()" id="txt-reload-btn" class="mt-6 px-5 py-2 rounded-xl border-2 border-emerald-600 hover:bg-emerald-600 hover:text-white text-emerald-700 text-xs font-black transition-all uppercase tracking-wider"></button>
                 </div>
@@ -269,14 +286,14 @@
     </div>
 
     <script>
-        // CORRECTION 4: MASTER CONFIGURABLE ADMINISTRATIVE PASS-CODE 
+        // ADMIN INTERFACE KEY SEED
         const ADMIN_PASSWORD = "1234";
 
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby0_1D1PGf-A5Ujp56rLkGbH8KuAC51NZIXSgaV1CFunZn9JeOs-Z4dGdIz27sKhw6P/exec";
 
         const translations = {
             am: {
-                companyName: 'ግሪን ላይት <span class="text-emerald-600">የመኪና ጥገና ማዕከል</span>',
+                companyName: "ግሪን ላይት የመኪና ጥገና ማዕከል",
                 tagline: 'የመኪናዎ የደህንነት አጋር',
                 title: "የእርስዎን ተሞክሮ ያካፍሉን",
                 subtitle: "አገልግሎታችንን ይበልጥ የተሻለ ለማድረግ የእርስዎ አስተያየት በእጅጉ ይረዳናል።",
@@ -297,7 +314,7 @@
                 reload: "ሌላ አስተያየት ይላኩ"
             },
             en: {
-                companyName: 'Green Light <span class="text-emerald-600">Automotive Center</span>',
+                companyName: "Green Light Automotive Center",
                 tagline: 'Your Safety Partner',
                 title: "Share Your Experience",
                 subtitle: "Help us keep your drive smooth and safe. Your feedback matters.",
@@ -318,7 +335,7 @@
                 reload: "Submit another response"
             },
             om: {
-                companyName: 'Giriin Laayit <span class="text-emerald-600">Senterii Konkolaataa</span>',
+                companyName: "Green Light Automotive Center",
                 tagline: 'Michuu Nageenya Konkolaataa Keessanii',
                 title: "Muuxannoo Keessan Nuuf Qoodaa",
                 subtitle: "Tajaajila keenya caalaatti fooyyessuuf yaadonni keessan baay'ee nu gargaaru.",
@@ -345,7 +362,6 @@
         let currentlyRenderedSubset = [];
         let chartInstance1 = null;
 
-        // CORRECTION 2: Landing Page Router Sequence
         function selectInitialLanguage(lang) {
             changeLanguage(lang);
             document.getElementById('landing-page').classList.add('hidden');
@@ -356,7 +372,7 @@
             currentLang = lang;
             const t = translations[lang];
             
-            document.getElementById('txt-company-name').innerHTML = t.companyName;
+            document.getElementById('txt-company-name').innerText = t.companyName;
             document.getElementById('txt-tagline').innerText = t.tagline;
             document.getElementById('txt-title').innerText = t.title;
             document.getElementById('txt-subtitle').innerText = t.subtitle;
@@ -404,7 +420,7 @@
                 customerName: document.getElementById('customerName').value || "Anonymous",
                 phoneNumber: document.getElementById('phoneNumber').value || "Not Provided",
                 plateNumber: document.getElementById('plateNumber').value || "Not Provided",
-                serviceType: "Unspecified", // CORRECTION 1: Removed element defaults parameter silently 
+                serviceType: "Unspecified",
                 rating: ratingScore,
                 comments: document.getElementById('comments').value || "No comment",
                 recommendation: document.querySelector('input[name="recommendation"]:checked').value
@@ -448,7 +464,7 @@
             const pass = prompt("Enter Managerial Dashboard Key Code:");
             if (!pass) return;
 
-            // CORRECTION 4: Validates against configuration variable at top
+            // FIXED LOCK INTERFACE PASSTHROUGH MATCH
             if (pass !== ADMIN_PASSWORD) {
                 alert("Invalid Master Key Password. Access Denied.");
                 return;
