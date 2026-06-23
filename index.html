@@ -1,120 +1,699 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Green Light Portal</title>
-  <!-- Google Fonts & Tailwind CSS for modern layout -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons for interactive tool feel -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background: radial-gradient(circle at top right, #1e293b, #0f172a);
-    }
-    .glass-card {
-      background: rgba(30, 41, 59, 0.7);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Portal - Green Light Automotive Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <style>
+        .premium-bg {
+            background: radial-gradient(circle at top right, #1e293b 0%, #0f172a 100%);
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glow-green:focus {
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.15);
+        }
+    </style>
 </head>
-<body class="min-h-screen text-slate-100 flex flex-col justify-between">
+<body class="premium-bg text-slate-100 font-sans min-h-screen flex flex-col justify-between antialiased">
 
-  <!-- Header / Nav -->
-  <header class="w-full max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
-    <div class="flex items-center gap-3">
-      <div class="bg-emerald-500 text-slate-950 p-2 rounded-xl shadow-lg shadow-emerald-500/20">
-        <i data-lucide="zap" class="w-6 h-6 font-bold"></i>
-      </div>
-      <span class="text-xl font-bold tracking-wider uppercase text-white">Green Light <span class="text-emerald-400">Hub</span></span>
-    </div>
-    
-    <!-- Quick Action / Admin Access Toggle -->
-    <a href="<?= ScriptApp.getService().getUrl() ?>?page=admin" class="group flex items-center gap-2 bg-slate-800/80 hover:bg-emerald-500 text-slate-300 hover:text-slate-950 px-4 py-2 rounded-xl border border-slate-700 hover:border-emerald-400 transition-all duration-300 shadow-md">
-      <i data-lucide="shield-check" class="w-4 h-4 transition-transform group-hover:scale-110"></i>
-      <span class="text-sm font-semibold">Admin Portal</span>
-    </a>
-  </header>
-
-  <!-- Main Hero Section -->
-  <main class="w-full max-w-6xl mx-auto px-6 py-12 flex-grow flex flex-col justify-center">
-    <div class="max-w-3xl mb-12">
-      <span class="text-emerald-400 text-sm font-semibold uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">Operations Workspace</span>
-      <h1 class="text-4xl md:text-5xl font-extrabold text-white mt-4 tracking-tight leading-tight">
-        Streamlined tracking for your <br class="hidden md:block">
-        <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">Automotive Operations.</span>
-      </h1>
-      <p class="text-slate-400 text-base md:text-lg mt-4 max-w-xl">
-        Access real-time database inputs, track sales performance, and manage documentation from one centralized dashboard.
-      </p>
-    </div>
-
-    <!-- Creative Tools / Quick Shortcuts Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      
-      <!-- Card 1: Main Data Entry Form -->
-      <div class="glass-card p-6 rounded-2xl shadow-xl hover:shadow-emerald-500/5 hover:border-emerald-500/30 transition-all duration-300 group flex flex-col justify-between">
-        <div>
-          <div class="w-12 h-12 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center mb-5 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all duration-300">
-            <i data-lucide="file-plus-2" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-xl font-bold text-white mb-2">Data Submission</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">
-            Log active job cards, vehicle service checklists, and customer delivery reports directly to the core ledger.
-          </p>
+    <header class="bg-slate-900/40 backdrop-blur-md border-b border-slate-800/50 py-5 px-4 sticky top-0 z-40">
+        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-green-500 text-slate-950 p-2 rounded-xl shadow-lg shadow-green-500/20">
+                    <i class="fas fa-bolt text-lg font-bold"></i>
+                </div>
+                <div class="text-left">
+                    <h1 id="txt-company-name" class="text-lg md:text-xl font-black uppercase tracking-wider text-white">
+                        ግሪን ላይት <span class="text-green-400">የመኪና ጥገና ማዕከል</span>
+                    </h1>
+                    <p id="txt-tagline" class="text-slate-500 text-[10px] tracking-widest uppercase">የመኪናዎ የደህንነት አጋር</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-1.5 bg-slate-950/40 p-1 rounded-xl border border-slate-800/60">
+                <button onclick="changeLanguage('am')" id="btn-am" class="px-3 py-1 text-xs rounded-lg font-bold transition-all">አማርኛ</button>
+                <button onclick="changeLanguage('en')" id="btn-en" class="px-3 py-1 text-xs rounded-lg font-semibold transition-all">EN</button>
+                <button onclick="changeLanguage('om')" id="btn-om" class="px-3 py-1 text-xs rounded-lg font-semibold transition-all">OM</button>
+            </div>
         </div>
-        <button class="mt-6 flex items-center gap-2 text-emerald-400 font-medium text-sm group-hover:translate-x-1 transition-transform">
-          Launch Form <i data-lucide="arrow-right" class="w-4 h-4"></i>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center justify-center p-4 md:p-8 z-10 relative">
+        
+        <div id="hero-block" class="text-center mb-8 max-w-xl">
+            <span class="text-green-400 text-xs font-bold uppercase tracking-widest bg-green-500/10 px-3 py-1 rounded-full border border-green-500/20">Operations Registry</span>
+            <h2 id="txt-title" class="text-3xl font-black text-white mt-3 tracking-tight">የእርስዎን ተሞክሮ ያካፍሉን</h2>
+            <p id="txt-subtitle" class="text-slate-400 text-sm mt-2 leading-relaxed">አገልግሎታችንን ይበልጥ የተሻለ ለማድረግ የእርስዎ አስተያየት በእጅጉ ይረዳናል።</p>
+        </div>
+
+        <div id="form-container" class="glass-card rounded-2xl shadow-2xl p-6 md:p-8 w-full max-w-xl transition-all duration-300">
+            
+            <div id="success-message" class="hidden text-center py-6">
+                <div id="success-icon" class="inline-flex items-center justify-center w-16 h-16 rounded-full text-3xl mb-4 shadow-xl"></div>
+                <h3 id="txt-success-title" class="text-2xl font-black text-white mb-2"></h3>
+                <p id="txt-success-desc" class="text-slate-400 text-sm max-w-sm mx-auto leading-relaxed"></p>
+                <button onclick="window.location.reload()" id="txt-reload-btn" class="mt-6 px-5 py-2 rounded-xl border border-slate-800 hover:border-green-500 hover:text-green-400 text-slate-300 text-xs font-semibold transition-all">
+                    ሌላ አስተያየት ይላኩ
+                </button>
+            </div>
+
+            <form id="feedback-form" class="space-y-4">
+                <div>
+                    <label id="lbl-name" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">ሙሉ ስም (አማራጭ)</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fas fa-user text-xs"></i></span>
+                        <input type="text" id="customerName" placeholder="Abebe" class="w-full bg-slate-950/40 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-700 focus:outline-none focus:border-green-500 glow-green transition-all">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label id="lbl-phone" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">ስልክ ቁጥር (አማራጭ)</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fas fa-phone text-xs"></i></span>
+                            <input type="tel" id="phoneNumber" placeholder="0911..." class="w-full bg-slate-950/40 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-700 focus:outline-none focus:border-green-500 glow-green transition-all">
+                        </div>
+                    </div>
+                    <div>
+                        <label id="lbl-plate" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">የሰሌዳ ቁጥር (አማራጭ)</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fas fa-car-rear text-xs"></i></span>
+                            <input type="text" id="plateNumber" placeholder="AA B 12345" class="w-full bg-slate-950/40 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-700 focus:outline-none focus:border-green-500 glow-green transition-all uppercase">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label id="lbl-service" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">ያገኙት አገልግሎት</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fas fa-tools text-xs"></i></span>
+                        <select id="serviceType" required class="w-full bg-slate-950/40 border border-slate-800 rounded-xl pl-10 pr-10 py-2.5 text-sm text-white focus:outline-none focus:border-green-500 glow-green transition-all appearance-none"></select>
+                        <span class="absolute inset-y-0 right-0 flex items-center pr-3.5 text-slate-500 pointer-events-none"><i class="fas fa-chevron-down text-xs"></i></span>
+                    </div>
+                </div>
+
+                <div>
+                    <label id="lbl-rating" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">አጠቃላይ ደረጃ</label>
+                    <div class="flex items-center space-x-3 bg-slate-950/30 p-2.5 border border-slate-800/60 rounded-xl justify-center star-rating">
+                        <input type="hidden" id="ratingValue" value="0" required>
+                        <button type="button" data-rating="1" class="star-btn text-2xl text-slate-700 hover:scale-110 transition-transform focus:outline-none"><i class="fas fa-star"></i></button>
+                        <button type="button" data-rating="2" class="star-btn text-2xl text-slate-700 hover:scale-110 transition-transform focus:outline-none"><i class="fas fa-star"></i></button>
+                        <button type="button" data-rating="3" class="star-btn text-2xl text-slate-700 hover:scale-110 transition-transform focus:outline-none"><i class="fas fa-star"></i></button>
+                        <button type="button" data-rating="4" class="star-btn text-2xl text-slate-700 hover:scale-110 transition-transform focus:outline-none"><i class="fas fa-star"></i></button>
+                        <button type="button" data-rating="5" class="star-btn text-2xl text-slate-700 hover:scale-110 transition-transform focus:outline-none"><i class="fas fa-star"></i></button>
+                    </div>
+                </div>
+
+                <div>
+                    <label id="lbl-comments" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">አስተያየት ወይም ጥቆማ</label>
+                    <textarea id="comments" rows="2" class="w-full bg-slate-950/40 border border-slate-800 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-green-500 glow-green transition-all resize-none"></textarea>
+                </div>
+
+                <div>
+                    <label id="lbl-recommend" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">ይህንን ማዕከል ለሌሎች ይጠቁማሉ?</label>
+                    <div class="flex items-center space-x-6 bg-slate-950/20 border border-slate-800/40 p-2.5 rounded-xl justify-center">
+                        <label class="flex items-center space-x-2 cursor-pointer group">
+                            <input type="radio" name="recommendation" value="Yes" checked class="accent-green-500 w-3.5 h-3.5">
+                            <span id="txt-yes" class="text-xs text-slate-300 font-medium group-hover:text-white transition-colors">አዎ</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer group">
+                            <input type="radio" name="recommendation" value="No" class="accent-green-500 w-3.5 h-3.5">
+                            <span id="txt-no" class="text-xs text-slate-300 font-medium group-hover:text-white transition-colors">አልጠቁምም</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" id="submit-btn" class="w-full bg-green-500 hover:bg-green-400 text-slate-950 font-black uppercase py-3 rounded-xl shadow-xl shadow-green-500/10 hover:shadow-green-500/20 hover:-translate-y-0.5 transition-all flex items-center justify-center space-x-2 mt-2 tracking-wider text-sm">
+                    <span id="txt-submit">አስተያየት ያስገቡ</span>
+                </button>
+            </form>
+        </div>
+
+        <div id="admin-dashboard" class="hidden w-full max-w-5xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-6 transition-all duration-300">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center border-b border-slate-800 pb-5 mb-5 gap-4">
+                <div>
+                    <h2 class="text-xl font-black text-white flex items-center gap-2">
+                        <i class="fas fa-chart-line text-green-400"></i> Management Intelligence Analytics
+                    </h2>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-0.5">Green Light Automotive Center Performance Monitor</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 w-full lg:w-auto">
+                    <select id="reportPeriod" onchange="filterAndRenderReports()" class="bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-green-500">
+                        <option value="daily">Daily Report (Today)</option>
+                        <option value="weekly" selected>Weekly Analytics (Last 7 Days)</option>
+                        <option value="monthly">Monthly Insight (Last 30 Days)</option>
+                        <option value="all">Historical Summary (All Time)</option>
+                    </select>
+                    <button onclick="exportFilteredDatasetToExcel()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all">
+                        <i class="fas fa-file-excel"></i> Export Excel
+                    </button>
+                    <button onclick="closeAdminView()" class="bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold tracking-wide transition-all border border-slate-700">Exit Panel</button>
+                </div>
+            </div>
+
+            <div class="bg-slate-950/60 border border-slate-800/80 p-3 rounded-xl mb-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                    <label class="block text-[9px] font-bold tracking-wider text-slate-500 uppercase mb-1">Filter By Service Type</label>
+                    <select id="filterService" onchange="filterAndRenderReports()" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-1.5 text-xs text-white focus:outline-none focus:border-green-500">
+                        <option value="ALL">All Categories</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[9px] font-bold tracking-wider text-slate-500 uppercase mb-1">Filter By Experience Tier</label>
+                    <select id="filterRatingGroup" onchange="filterAndRenderReports()" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-1.5 text-xs text-white focus:outline-none focus:border-green-500">
+                        <option value="ALL">All Scores</option>
+                        <option value="GOOD">Satisfactory (4-5 Stars)</option>
+                        <option value="BAD">Critical / Complaints (1-3 Stars)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[9px] font-bold tracking-wider text-slate-500 uppercase mb-1">Search Registry</label>
+                    <input type="text" id="filterSearch" onkeyup="filterAndRenderReports()" placeholder="Search Name, Plate, Phone..." class="w-full bg-slate-900 border border-slate-800 rounded-lg p-1.5 text-xs text-white focus:outline-none focus:border-green-500 placeholder-slate-700">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+                <div class="bg-slate-950 p-4 border border-slate-800 rounded-xl">
+                    <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Total Reviews</p>
+                    <p id="card-total-reviews" class="text-2xl font-black text-green-400 mt-0.5">0</p>
+                </div>
+                <div class="bg-slate-950 p-4 border border-slate-800 rounded-xl">
+                    <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Average Rating</p>
+                    <p id="card-avg-rating" class="text-2xl font-black text-yellow-400 mt-0.5">0.0 / 5</p>
+                </div>
+                <div class="bg-slate-950 p-4 border border-slate-800 rounded-xl">
+                    <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Net Promoters</p>
+                    <p id="card-recommend-rate" class="text-2xl font-black text-blue-400 mt-0.5">0%</p>
+                </div>
+                <div class="bg-slate-950 p-4 border border-slate-800 rounded-xl">
+                    <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Critical Alerts</p>
+                    <p id="card-critical-alerts" class="text-2xl font-black text-rose-500 mt-0.5">0</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col items-center">
+                    <h4 class="text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-2 self-start">Volume Distribution Matrix</h4>
+                    <div class="w-full h-44"><canvas id="chartRatings"></canvas></div>
+                </div>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col items-center">
+                    <h4 class="text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-2 self-start">Service Category Volumes</h4>
+                    <div class="w-full h-44"><canvas id="chartServices"></canvas></div>
+                </div>
+            </div>
+
+            <div class="bg-slate-950 rounded-xl border border-slate-800 p-4">
+                <h4 class="text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-2">Granular Customer Comments Log <span class="text-[9px] lowercase text-slate-500">(click row to expand details)</span></h4>
+                <div class="overflow-y-auto max-h-48 space-y-2 pr-1" id="comments-feed-log"></div>
+            </div>
+        </div>
+    </main>
+
+    <div id="detail-modal" class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-md rounded-2xl p-5 shadow-2xl transition-all scale-95 duration-150" id="modal-content">
+            <div class="flex justify-between items-start border-b border-slate-800 pb-3 mb-4">
+                <div>
+                    <h3 id="modal-cust-name" class="text-base font-black text-white">Customer Profile</h3>
+                    <p id="modal-timestamp" class="text-[9px] text-slate-500 mt-0.5">Timestamp</p>
+                </div>
+                <button onclick="closeDetailModal()" class="text-slate-400 hover:text-white bg-slate-800 h-6 w-6 rounded-full flex items-center justify-center"><i class="fas fa-times text-xs"></i></button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-800/60">
+                        <span class="block text-[9px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">Phone Number</span>
+                        <span id="modal-phone" class="text-slate-200 font-medium">N/A</span>
+                    </div>
+                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-800/60">
+                        <span class="block text-[9px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">Plate Registry</span>
+                        <span id="modal-plate" class="text-slate-200 font-medium uppercase">N/A</span>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-2 rounded-xl border border-slate-800/60">
+                    <span class="block text-[9px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">Service Tier Received</span>
+                    <span id="modal-service" class="text-slate-200 font-medium">N/A</span>
+                </div>
+                <div class="bg-slate-950 p-2 rounded-xl border border-slate-800/60 flex justify-between items-center">
+                    <div>
+                        <span class="block text-[9px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">Performance Score</span>
+                        <span id="modal-rating-stars" class="text-yellow-400 text-xs"></span>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-[9px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">Net Promoter</span>
+                        <span id="modal-recommend" class="text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800/60">
+                    <span class="block text-[9px] font-bold uppercase tracking-wider text-slate-500 mb-1">Feedback Commentary Log</span>
+                    <p id="modal-comments" class="text-slate-300 italic whitespace-pre-wrap text-xs leading-relaxed">No comment</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-slate-950/40 backdrop-blur-md py-4 px-6 text-center border-t border-slate-900 text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2 z-10">
+        <div>&copy; 2026 Green Light Automotive Center. All rights reserved.</div>
+        <button onclick="promptAdminLogin()" class="text-slate-600 hover:text-green-400 font-semibold transition-colors flex items-center gap-1.5 py-1 px-2 rounded hover:bg-slate-900/60">
+            <i class="fas fa-lock text-[10px]"></i> Manager Portal
         </button>
-      </div>
+    </footer>
 
-      <!-- Card 2: Performance Tracking -->
-      <div class="glass-card p-6 rounded-2xl shadow-xl hover:shadow-cyan-500/5 hover:border-cyan-500/30 transition-all duration-300 group flex flex-col justify-between">
-        <div>
-          <div class="w-12 h-12 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 rounded-xl flex items-center justify-center mb-5 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all duration-300">
-            <i data-lucide="trending-up" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-xl font-bold text-white mb-2">Metrics & Reporting</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">
-            Analyze daily operational volumes, monitor conversion parameters, and check sales logs.
-          </p>
-        </div>
-        <button class="mt-6 flex items-center gap-2 text-cyan-400 font-medium text-sm group-hover:translate-x-1 transition-transform">
-          View Logs <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </button>
-      </div>
+    <script>
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby0_1D1PGf-A5Ujp56rLkGbH8KuAC51NZIXSgaV1CFunZn9JeOs-Z4dGdIz27sKhw6P/exec";
 
-      <!-- Card 3: System Status -->
-      <div class="glass-card p-6 rounded-2xl shadow-xl hover:shadow-amber-500/5 hover:border-amber-500/30 transition-all duration-300 group flex flex-col justify-between">
-        <div>
-          <div class="w-12 h-12 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center mb-5 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all duration-300">
-            <i data-lucide="database" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-xl font-bold text-white mb-2">Sheet Ecosystem</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">
-            Connected to your central automated workbook. Changes log instantaneously with strict data integrity validations.
-          </p>
-        </div>
-        <div class="mt-6 flex items-center gap-2 text-amber-400 text-sm font-semibold bg-amber-500/10 px-3 py-1 rounded-lg w-fit border border-amber-500/20">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Connected
-        </div>
-      </div>
+        const translations = {
+            am: {
+                companyName: 'ግሪን ላይት <span class="text-green-400">የመኪና ጥገና ማዕከል</span>',
+                tagline: 'የመኪናዎ የደህንነት አጋር',
+                title: "የእርስዎን ተሞክሮ ያካፍሉን",
+                subtitle: "አገልግሎታችንን ይበልጥ የተሻለ ለማድረግ የእርስዎ አስተያየት በእጅጉ ይረዳናል።",
+                name: "ሙሉ ስም (አማራጭ)",
+                phone: "ስልክ ቁጥር (አማራጭ)",
+                plate: "የሰሌዳ ቁጥር (አማራጭ)",
+                service: "ያገኙት አገልግሎት",
+                rating: "አጠቃላይ ደረጃ",
+                comments: "አስተያየት ወይም ጥቆማ",
+                recommend: "ይህንን ማዕከል ለሌሎች ይጠቁማሉ?",
+                yes: "አዎ",
+                no: "አልጠቁምም",
+                submit: "አስተያየት ያስገቡ",
+                processing: "በማስገባት ላይ...",
+                selectService: "የአገልግሎት አይነት ይምረጡ...",
+                successGoodTitle: "እናመሰግናለን!",
+                successGoodDesc: "አስተያየትዎ በተሳካ ሁኔታ ተመዝግቧል። እኛን ስለመረጡ እናመሰግናለን።",
+                successBadTitle: "አስተያየትዎን ተቀብለናል!",
+                successBadDesc: "ስለተፈጠረው ችግር እናዝናለን፤ ያጋጠመዎትን ቅሬታ ቡድናችን አስቸኳይ ትኩረት ሰጥቶ የሚያስተካክል ይሆናል።",
+                reload: "ሌላ አስተያየት ይላኩ",
+                services: [
+                    "የመኪና እጥበት (Car Wash)",
+                    "የዘይት እና መደበኛ ጥገና (Routine Maintenance)",
+                    "የሞተር ምርመራ እና ጥገና (Engine Diagnostics)",
+                    "የፍሬን ሲስተም ጥገና (Brake Service)",
+                    "የታችኛው ክፍል እና ዊል አላይመንት (Suspension & Alignment)",
+                    "የኤሌክትሪክ እና የቆርቆሮ ስራ (Electrical & Bodywork)",
+                    "ሌላ አገልግሎት (Other)"
+                ]
+            },
+            en: {
+                companyName: 'Green Light <span class="text-green-400">Automotive Center</span>',
+                tagline: 'Your Safety Partner',
+                title: "Share Your Experience",
+                subtitle: "Help us keep your drive smooth and safe. Your feedback matters.",
+                name: "Full Name (Optional)",
+                phone: "Phone Number (Optional)",
+                plate: "Plate Number (Optional)",
+                service: "Service Received",
+                rating: "Overall Rating",
+                comments: "Comments / Suggestions",
+                recommend: "Would you recommend us to friends or family?",
+                yes: "Yes",
+                no: "No",
+                submit: "Submit Feedback",
+                processing: "Processing...",
+                selectService: "Select service type...",
+                successGoodTitle: "Thank You!",
+                successGoodDesc: "Your feedback has been successfully recorded. We appreciate your support!",
+                successBadTitle: "Thank you for your feedback!",
+                successBadDesc: "We deeply value your honesty. Our specialized response team will address your complaint immediately.",
+                reload: "Submit another response",
+                services: [
+                    "Car Wash",
+                    "Routine Maintenance & Oil Change",
+                    "Engine Diagnostics & Repair",
+                    "Brake System Service",
+                    "Suspension & Wheel Alignment",
+                    "Electrical System / Bodywork",
+                    "Other Service"
+                ]
+            },
+            om: {
+                companyName: 'Giriin Laayit <span class="text-green-400">Senterii Konkolaataa</span>',
+                tagline: 'Michuu Nageenya Konkolaataa Keessanii',
+                title: "Muuxannoo Keessan Nuuf Qoodaa",
+                subtitle: "Tajaajila keenya caalaatti fooyyessuuf yaadonni keessan baay'ee nu gargaaru.",
+                name: "Maqaa Guutuu (Filannoo)",
+                phone: "Lakkofsa Bilbilaa (Filannoo)",
+                plate: "Lakkofsa Gabatee (Filannoo)",
+                service: "Tajaajila Argattan",
+                rating: "Sadarkaa Tajaajilaa",
+                comments: "Yaada ykn Yaada Fooyya'iinsaa",
+                recommend: "Gara fuulduraatti namoota biroof nu firi qoodduu?",
+                yes: "Eeyyee",
+                no: "Iyyuu hin qoodu",
+                submit: "Yaada Keessan Ergaa",
+                processing: "Ergamaa jira...",
+                selectService: "Gosa tajaajilaa filadha qaba...",
+                successGoodTitle: "Galatoomaa!",
+                successGoodDesc: "Yaanni keessan milkiidhaan galmaa'ee jira. Nu filachuu keessaniif galatoomaa.",
+                successBadTitle: "Yaada keessaniif galatoomaa!",
+                successBadDesc: "Hanqina uumameef dhiifama gaafanna; rakkoo keessan furuuf gareen keenya dhimma kana dhimma ariifachiisaan ilaala.",
+                reload: "Yaada dabalataa ergi",
+                services: [
+                    "Dhiqannaa Konkolaataa (Car Wash)",
+                    "Suphaa Idilee fi Jijjiirraa Zaayitii",
+                    "Qorannaa fi Suphaa Matooraa",
+                    "Suphaa Sirna Fireenii",
+                    "Miseensa Jalaa fi Alayimentii Fiitii",
+                    "Hojii Elektriikaa fi Booridii",
+                    "Tajaajila Biroo"
+                ]
+            }
+        };
 
-    </div>
-  </main>
+        let currentLang = 'am';
+        let rawDatasetGlobal = [];
+        let currentlyRenderedSubset = [];
+        let chartInstance1 = null;
+        let chartInstance2 = null;
 
-  <!-- Footer -->
-  <footer class="w-full max-w-6xl mx-auto px-6 py-8 border-t border-slate-800/60 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-    <p>&copy; 2026 Green Light Center. All rights reserved.</p>
-    <p>Operational Platform Portal V2.0</p>
-  </footer>
+        function changeLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+            
+            document.getElementById('txt-company-name').innerHTML = t.companyName;
+            document.getElementById('txt-tagline').innerText = t.tagline;
+            document.getElementById('txt-title').innerText = t.title;
+            document.getElementById('txt-subtitle').innerText = t.subtitle;
+            document.getElementById('lbl-name').innerText = t.name;
+            document.getElementById('lbl-phone').innerText = t.phone;
+            document.getElementById('lbl-plate').innerText = t.plate;
+            document.getElementById('lbl-service').innerText = t.service;
+            document.getElementById('lbl-rating').innerText = t.rating;
+            document.getElementById('lbl-comments').innerText = t.comments;
+            document.getElementById('lbl-recommend').innerText = t.recommend;
+            document.getElementById('txt-yes').innerText = t.yes;
+            document.getElementById('txt-no').innerText = t.no;
+            document.getElementById('txt-submit').innerText = t.submit;
+            document.getElementById('txt-reload-btn').innerText = t.reload;
 
-  <!-- Initialize Lucide Icons -->
-  <script>
-    lucide.createIcons();
-  </script>
+            const selectEl = document.getElementById('serviceType');
+            const savedVal = selectEl.value;
+            selectEl.innerHTML = `<option value="" disabled selected class="text-slate-600">${t.selectService}</option>`;
+            t.services.forEach(srv => {
+                const opt = document.createElement('option');
+                opt.value = srv;
+                opt.innerText = srv;
+                selectEl.appendChild(opt);
+            });
+            if(savedVal) selectEl.value = savedVal;
+
+            ['am', 'en', 'om'].forEach(l => {
+                document.getElementById(`btn-${l}`).className = l === lang ? 
+                    "px-3 py-1 text-xs rounded-lg bg-green-500 text-slate-950 font-bold transition-all shadow-md shadow-green-500/20" : 
+                    "px-3 py-1 text-xs rounded-lg bg-slate-800/60 text-slate-400 font-semibold hover:bg-slate-700 transition-all";
+            });
+        }
+        changeLanguage('am');
+
+        const starButtons = document.querySelectorAll('.star-btn');
+        const ratingInput = document.getElementById('ratingValue');
+
+        starButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const selectedRating = parseInt(button.getAttribute('data-rating'));
+                ratingInput.value = selectedRating;
+                starButtons.forEach((btn, idx) => {
+                    btn.className = idx < selectedRating ? "star-btn text-2xl text-yellow-400 scale-110 transition-transform focus:outline-none" : "star-btn text-2xl text-slate-700 focus:outline-none";
+                });
+            });
+        });
+
+        const form = document.getElementById('feedback-form');
+        const submitBtn = document.getElementById('submit-btn');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const ratingScore = parseInt(ratingInput.value);
+
+            if (ratingScore === 0) {
+                alert(currentLang === 'am' ? "እባክዎ መጀመሪያ ደረጃ ይምረጡ።" : "Please select a rating.");
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fas fa-spinner animate-spin text-sm"></i> <span>${translations[currentLang].processing}</span>`;
+
+            const payload = {
+                customerName: document.getElementById('customerName').value || "Anonymous",
+                phoneNumber: document.getElementById('phoneNumber').value || "Not Provided",
+                plateNumber: document.getElementById('plateNumber').value || "Not Provided",
+                serviceType: document.getElementById('serviceType').value,
+                rating: ratingScore,
+                comments: document.getElementById('comments').value || "No comment",
+                recommendation: document.querySelector('input[name="recommendation"]:checked').value
+            };
+
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const t = translations[currentLang];
+                if (ratingScore <= 3) {
+                    document.getElementById('success-icon').className = "inline-flex items-center justify-center w-16 h-16 bg-rose-500 text-white rounded-full text-3xl mb-4";
+                    document.getElementById('success-icon').innerHTML = `<i class="fas fa-exclamation-triangle"></i>`;
+                    document.getElementById('txt-success-title').innerText = t.successBadTitle;
+                    document.getElementById('txt-success-desc').innerText = t.successBadDesc;
+                } else {
+                    document.getElementById('success-icon').className = "inline-flex items-center justify-center w-16 h-16 bg-green-500 text-slate-950 rounded-full text-3xl mb-4";
+                    document.getElementById('success-icon').innerHTML = `<i class="fas fa-check"></i>`;
+                    document.getElementById('txt-success-title').innerText = t.successGoodTitle;
+                    document.getElementById('txt-success-desc').innerText = t.successGoodDesc;
+                }
+
+                form.classList.add('hidden');
+                document.getElementById('hero-block').classList.add('hidden');
+                document.getElementById('success-message').classList.remove('hidden');
+
+            } catch (error) {
+                console.error(error);
+                alert("Submission failed.");
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<span>${translations[currentLang].submit}</span>`;
+            }
+        });
+
+        async function promptAdminLogin() {
+            const pass = prompt("Enter Managerial Dashboard Key Code:");
+            if (!pass) return;
+
+            document.getElementById('form-container').classList.add('hidden');
+            document.getElementById('hero-block').classList.add('hidden');
+            
+            try {
+                const res = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: JSON.stringify({ action: "fetchData", password: pass })
+                });
+                const resultData = await res.json();
+
+                if (resultData.status === "unauthorized") {
+                    alert("Invalid Master Key Password. Access Denied.");
+                    closeAdminView();
+                    return;
+                }
+
+                rawDatasetGlobal = resultData.data;
+                
+                const filterSvcDrop = document.getElementById('filterService');
+                filterSvcDrop.innerHTML = '<option value="ALL">All Categories</option>';
+                const uniqueServices = [...new Set(rawDatasetGlobal.map(i => i.serviceType).filter(Boolean))];
+                uniqueServices.forEach(s => {
+                    const opt = document.createElement('option');
+                    opt.value = s;
+                    opt.innerText = s;
+                    filterSvcDrop.appendChild(opt);
+                });
+
+                document.getElementById('admin-dashboard').classList.remove('hidden');
+                filterAndRenderReports();
+
+            } catch (err) {
+                console.error(err);
+                alert("Error loading remote database records.");
+                closeAdminView();
+            }
+        }
+
+        function closeAdminView() {
+            document.getElementById('admin-dashboard').classList.add('hidden');
+            document.getElementById('form-container').classList.remove('hidden');
+            document.getElementById('hero-block').classList.remove('hidden');
+        }
+
+        function filterAndRenderReports() {
+            const targetPeriod = document.getElementById('reportPeriod').value;
+            const targetService = document.getElementById('filterService').value;
+            const targetRatingGroup = document.getElementById('filterRatingGroup').value;
+            const searchToken = document.getElementById('filterSearch').value.toLowerCase().trim();
+            const now = new Date();
+            
+            currentlyRenderedSubset = rawDatasetGlobal.filter(item => {
+                if (targetPeriod !== "all" && item.timestamp) {
+                    const itemDate = new Date(item.timestamp);
+                    const diffTime = Math.abs(now - itemDate);
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                    if (targetPeriod === "daily" && diffDays > 1) return false;
+                    if (targetPeriod === "weekly" && diffDays > 7) return false;
+                    if (targetPeriod === "monthly" && diffDays > 30) return false;
+                }
+                if (targetService !== "ALL" && item.serviceType !== targetService) return false;
+                if (targetRatingGroup === "GOOD" && parseInt(item.rating) < 4) return false;
+                if (targetRatingGroup === "BAD" && parseInt(item.rating) > 3) return false;
+                if (searchToken) {
+                    const matchName = (item.customerName || "").toLowerCase().includes(searchToken);
+                    const matchPhone = (item.phoneNumber || "").toLowerCase().includes(searchToken);
+                    const matchPlate = (item.plateNumber || "").toLowerCase().includes(searchToken);
+                    const matchComment = (item.comments || "").toLowerCase().includes(searchToken);
+                    if (!matchName && !matchPhone && !matchPlate && !matchComment) return false;
+                }
+                return true;
+            });
+
+            renderDashboardMetrics(currentlyRenderedSubset);
+        }
+
+        function renderDashboardMetrics(data) {
+            const total = data.length;
+            let ratingSum = 0;
+            let promoterCount = 0;
+            let criticalCount = 0;
+            
+            const ratingsMap = {1:0, 2:0, 3:0, 4:0, 5:0};
+            const servicesMap = {};
+
+            const logContainer = document.getElementById('comments-feed-log');
+            logContainer.innerHTML = "";
+
+            data.forEach(item => {
+                const r = parseInt(item.rating);
+                ratingSum += r;
+                ratingsMap[r] = (ratingsMap[r] || 0) + 1;
+                
+                const srv = item.serviceType || "Other";
+                servicesMap[srv] = (servicesMap[srv] || 0) + 1;
+
+                if (item.recommendation === "Yes") promoterCount++;
+                if (r <= 3) criticalCount++;
+
+                const logItem = document.createElement('div');
+                logItem.className = `p-3 rounded-xl text-xs bg-slate-900 border border-slate-800 hover:border-slate-700 cursor-pointer transition-all border-l-4 ${r <= 3 ? 'border-l-rose-500' : 'border-l-green-500'} active:scale-[0.99]`;
+                logItem.setAttribute('onclick', `openDetailModal(${JSON.stringify(item).replace(/"/g, '&quot;')})`);
+                logItem.innerHTML = `
+                    <div class="flex justify-between font-bold text-slate-300">
+                        <span>${item.customerName} <span class="text-slate-600 font-normal">[${item.plateNumber}]</span></span>
+                        <span class="text-yellow-400">${"★".repeat(r)}${"☆".repeat(5-r)}</span>
+                    </div>
+                    <p class="text-slate-400 mt-1 italic line-clamp-1">"${item.comments}"</p>
+                `;
+                logContainer.appendChild(logItem);
+            });
+
+            document.getElementById('card-total-reviews').innerText = total;
+            document.getElementById('card-avg-rating').innerText = total > 0 ? (ratingSum / total).toFixed(1) + " / 5" : "0.0 / 5";
+            document.getElementById('card-recommend-rate').innerText = total > 0 ? Math.round((promoterCount / total) * 100) + "%" : "0%";
+            document.getElementById('card-critical-alerts').innerText = criticalCount;
+
+            if (chartInstance1) chartInstance1.destroy();
+            if (chartInstance2) chartInstance2.destroy();
+
+            const ctx1 = document.getElementById('chartRatings').getContext('2d');
+            chartInstance1 = new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['1★', '2★', '3★', '4★', '5★'],
+                    datasets: [{
+                        data: [ratingsMap[1], ratingsMap[2], ratingsMap[3], ratingsMap[4], ratingsMap[5]],
+                        backgroundColor: ['#f43f5e', '#f97316', '#eab308', '#84cc16', '#22c55e'],
+                        borderRadius: 4
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#64748b' } }, y: { ticks: { color: '#64748b', precision: 0 } } } }
+            });
+
+            const ctx2 = document.getElementById('chartServices').getContext('2d');
+            chartInstance2 = new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(servicesMap),
+                    datasets: [{
+                        data: Object.values(servicesMap),
+                        backgroundColor: ['#22c55e', '#3b82f6', '#a855f7', '#f43f5e', '#eab308', '#06b6d4', '#64748b'],
+                        borderWidth: 0
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { color: '#9ca3af', font: { size: 9 } } } } }
+            });
+        }
+
+        function openDetailModal(item) {
+            document.getElementById('modal-cust-name').innerText = item.customerName || "Anonymous";
+            document.getElementById('modal-timestamp').innerText = item.timestamp ? new Date(item.timestamp).toLocaleString() : "Date N/A";
+            document.getElementById('modal-phone').innerText = item.phoneNumber || "Not Provided";
+            document.getElementById('modal-plate').innerText = item.plateNumber || "Not Provided";
+            document.getElementById('modal-service').innerText = item.serviceType || "Unspecified Category";
+            document.getElementById('modal-comments').innerText = item.comments || "";
+            
+            const r = parseInt(item.rating) || 0;
+            document.getElementById('modal-rating-stars').innerHTML = "★".repeat(r) + "☆".repeat(5-r);
+            
+            const recEl = document.getElementById('modal-recommend');
+            recEl.innerText = item.recommendation === "Yes" ? "Yes" : "No";
+            recEl.className = item.recommendation === "Yes" ? 
+                "text-[10px] px-2 py-0.5 rounded-full font-bold bg-green-500/10 text-green-400 border border-green-500/20" : 
+                "text-[10px] px-2 py-0.5 rounded-full font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20";
+
+            const modal = document.getElementById('detail-modal');
+            const content = document.getElementById('modal-content');
+            modal.classList.remove('hidden');
+            setTimeout(() => { content.classList.remove('scale-95'); content.classList.add('scale-100'); }, 10);
+        }
+
+        function closeDetailModal() {
+            const modal = document.getElementById('detail-modal');
+            const content = document.getElementById('modal-content');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); }, 150);
+        }
+
+        function exportFilteredDatasetToExcel() {
+            if (currentlyRenderedSubset.length === 0) {
+                alert("No records to export.");
+                return;
+            }
+            const dataMatrixRows = currentlyRenderedSubset.map(item => ({
+                "Date": item.timestamp ? new Date(item.timestamp).toLocaleString() : '',
+                "Customer Name": item.customerName,
+                "Phone": item.phoneNumber,
+                "Plate": item.plateNumber,
+                "Service Type": item.serviceType,
+                "Rating": item.rating,
+                "Recommend": item.recommendation,
+                "Comments": item.comments
+            }));
+            const ws = XLSX.utils.json_to_sheet(dataMatrixRows);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Feedback Analytics");
+            XLSX.writeFile(wb, `GREEN_LIGHT_REPORT_${new Date().toISOString().split('T')[0]}.xlsx`);
+        }
+
+        window.onclick = function(e) {
+            const modal = document.getElementById('detail-modal');
+            if (e.target === modal) { closeDetailModal(); }
+        }
+    </script>
 </body>
 </html>
