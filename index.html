@@ -22,8 +22,10 @@
 </head>
 <body class="premium-bg text-emerald-900 font-sans min-h-screen flex flex-col justify-between antialiased">
 
+    <!-- LANDING PAGE INSTANCE SCREEN -->
     <div id="landing-page" class="fixed inset-0 bg-white z-50 overflow-y-auto flex flex-col items-center justify-between min-h-screen py-8 px-4">
         <div class="max-w-2xl w-full text-center space-y-6 my-auto pb-6">
+            <!-- Branding Header -->
             <div class="flex flex-col items-center space-y-3">
                 <div class="bg-white p-1.5 rounded-2xl border-2 border-emerald-600 shadow-lg flex items-center justify-center shrink-0">
                     <img src="logo.png" alt="Green Light Logo" class="w-24 h-24 object-contain rounded-xl">
@@ -34,21 +36,25 @@
                 <p class="text-emerald-600 text-xs tracking-widest uppercase font-extrabold">Your Safety Partner</p>
             </div>
 
+            <!-- Wide Auto Center Creative Image -->
             <div class="w-full h-56 md:h-72 rounded-2xl overflow-hidden border-2 border-emerald-600 shadow-md bg-emerald-50">
                 <img src="autocenter-hero.jpg" alt="Green Light Automotive Center Facility" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=1200&q=80';">
             </div>
 
+            <!-- Welcoming Entry Node Block -->
             <div class="space-y-2 px-4">
                 <h2 class="text-xl md:text-2xl font-black text-emerald-800">Welcome to Our Customer Experience Portal</h2>
                 <p class="text-emerald-600 text-xs font-bold uppercase tracking-wide">Please choose your preferred language to proceed / እባክዎ መጀመሪያ ቋንቋ ይምረጡ</p>
             </div>
 
+            <!-- Language Select Option Matrix Buttons -->
             <div class="grid grid-cols-1 gap-3 max-w-md mx-auto pt-2">
                 <button onclick="selectInitialLanguage('am')" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-base rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all tracking-wider">አማርኛ</button>
                 <button onclick="selectInitialLanguage('en')" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-base rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all tracking-wider">ENGLISH</button>
                 <button onclick="selectInitialLanguage('om')" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-base rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all tracking-wider">AFFAAN OROMOO</button>
             </div>
 
+            <!-- Attractive Utility Tooling Matrix Badges -->
             <div class="pt-6 border-t border-emerald-100 max-w-md mx-auto">
                 <div class="grid grid-cols-3 gap-2">
                     <div class="p-2 bg-emerald-50 rounded-xl border border-emerald-200 text-center">
@@ -67,15 +73,36 @@
             </div>
         </div>
 
+        <!-- Landing Screen Footer with Manager Portal Link -->
         <div class="w-full text-center text-xs text-emerald-800 font-bold pt-4 border-t border-emerald-50 max-w-2xl">
             <div class="flex flex-col sm:flex-row justify-between items-center gap-2">
                 <div>&copy; 2026 Green Light Automotive Center.</div>
-                <button onclick="promptAdminLogin()" class="text-emerald-700 hover:text-emerald-950 font-black transition-colors py-1 px-2 rounded border border-emerald-200 bg-emerald-50 shadow-sm">Manager Portal</button>
+                <button onclick="openCustomLoginModal()" class="text-emerald-700 hover:text-emerald-950 font-black transition-colors py-1 px-2 rounded border border-emerald-200 bg-emerald-50 shadow-sm">Manager Portal</button>
             </div>
         </div>
     </div>
 
+    <!-- CUSTOM INLINE MANAGER LOGIN MODAL DIALOG (FIX FOR COLD PROMPT BUG) -->
+    <div id="custom-login-modal" class="hidden fixed inset-0 bg-emerald-950/40 backdrop-blur-sm flex items-center justify-center p-4 z-[60]">
+        <div class="bg-white border-2 border-emerald-600 w-full max-w-sm rounded-2xl p-6 shadow-2xl transition-all transform scale-100">
+            <div class="text-center space-y-2 mb-4">
+                <span class="text-xl">🔐</span>
+                <h3 class="text-base font-black text-emerald-900 uppercase tracking-wide">Manager Credentials</h3>
+                <p class="text-[11px] text-emerald-600 font-bold">Enter master security access key below</p>
+            </div>
+            <div class="space-y-4">
+                <input type="password" id="modalAdminPassword" placeholder="••••" class="w-full text-center bg-emerald-50/50 border-2 border-emerald-200 rounded-xl px-4 py-2.5 text-base font-black tracking-widest text-emerald-900 placeholder-emerald-200 focus:outline-none focus:border-emerald-600 glow-green transition-all">
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="closeCustomLoginModal()" class="w-full py-2.5 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl text-xs font-black uppercase text-emerald-700 tracking-wider transition-all">Cancel</button>
+                    <button onclick="submitCustomLoginVerify()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 rounded-xl text-xs font-black uppercase text-white tracking-wider transition-all shadow-md">Unlock</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core App Dashboard Frame View Wrapper -->
     <div id="main-app-content" class="hidden flex-grow flex flex-col justify-between min-h-screen">
+        <!-- Header Section -->
         <header class="bg-white border-b-2 border-emerald-600 py-5 px-4 sticky top-0 z-40 shadow-sm">
             <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
                 <div class="flex flex-col sm:flex-row items-center text-center sm:text-left gap-4 w-full sm:w-auto justify-center mx-auto">
@@ -90,6 +117,7 @@
             </div>
         </header>
 
+        <!-- Main Workspace Frame -->
         <main class="flex-grow flex flex-col items-center justify-center p-4 md:p-8 z-10 relative max-w-5xl mx-auto w-full">
             <div id="hero-block" class="text-center mb-6 max-w-xl">
                 <span class="text-white text-xs font-black uppercase tracking-widest bg-emerald-600 px-4 py-1.5 rounded-full shadow-sm">Operations Registry</span>
@@ -97,6 +125,7 @@
                 <p id="txt-subtitle" class="text-emerald-800 text-base mt-2 font-bold leading-relaxed"></p>
             </div>
 
+            <!-- Service Feature Trust Badges Matrix -->
             <div id="features-bar" class="grid grid-cols-3 gap-3 w-full max-w-xl mb-6 text-center">
                 <div class="bg-emerald-50 p-2.5 rounded-xl border border-emerald-200 shadow-sm flex flex-col items-center justify-center">
                     <span class="text-xl">⏱️</span>
@@ -112,6 +141,7 @@
                 </div>
             </div>
 
+            <!-- Customer Input View Engine Card -->
             <div id="form-container" class="glass-card rounded-2xl shadow-xl p-6 md:p-8 w-full max-w-xl transition-all duration-300">
                 <div id="success-message" class="hidden text-center py-6">
                     <div id="success-icon" class="inline-flex items-center justify-center w-16 h-16 rounded-full text-3xl mb-4 shadow-xl"></div>
@@ -120,6 +150,7 @@
                     <button onclick="window.location.reload()" id="txt-reload-btn" class="mt-6 px-5 py-2 rounded-xl border-2 border-emerald-600 hover:bg-emerald-600 hover:text-white text-emerald-700 text-xs font-black transition-all uppercase tracking-wider"></button>
                 </div>
 
+                <!-- Core Live Feedback Form -->
                 <form id="feedback-form" class="space-y-4">
                     <div>
                         <label id="lbl-name" class="block text-xs font-black uppercase tracking-wider text-emerald-700 mb-1.5"></label>
@@ -174,6 +205,7 @@
                 </form>
             </div>
 
+            <!-- MANAGEMENT REPORTING INTERACTIVE ANALYTICS PORTAL PANEL -->
             <div id="admin-dashboard" class="hidden w-full max-w-5xl bg-white border-2 border-emerald-600 rounded-2xl shadow-2xl p-6 transition-all duration-300">
                 <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center border-b-2 border-emerald-100 pb-5 mb-5 gap-4">
                     <div>
@@ -207,6 +239,7 @@
                     </div>
                 </div>
 
+                <!-- Scorecards Matrix Rows -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5">
                     <div class="bg-emerald-50 p-4 border border-emerald-100 rounded-xl">
                         <p class="text-[10px] text-emerald-600 font-black uppercase tracking-wider">Total Reviews</p>
@@ -240,6 +273,7 @@
             </div>
         </main>
 
+        <!-- INLINE FOCUS MODAL EXPANSION VIEW OVERLAY -->
         <div id="detail-modal" class="hidden fixed inset-0 bg-emerald-950/30 backdrop-blur-sm flex items-center justify-center p-4 z-50">
             <div class="bg-white border-2 border-emerald-500 w-full max-w-md rounded-2xl p-5 shadow-2xl transition-all scale-95 duration-150" id="modal-content">
                 <div class="flex justify-between items-start border-b border-emerald-100 pb-3 mb-4">
@@ -266,7 +300,7 @@
                             <span id="modal-rating-stars" class="text-amber-500 text-xs"></span>
                         </div>
                         <div class="text-right">
-                            <span class="block text-[9px] font-black uppercase tracking-wider text-emerald-700 mb-1 text-emerald-700 font-extrabold uppercase">Net Promoter</span>
+                            <span class="block text-[9px] font-black uppercase tracking-wider text-emerald-700 mb-1">Net Promoter</span>
                             <span id="modal-recommend" class="text-[10px] px-2 py-0.5 rounded-full font-black"></span>
                         </div>
                     </div>
@@ -278,12 +312,14 @@
             </div>
         </div>
 
+        <!-- Secondary Form View Footer -->
         <footer class="bg-emerald-50 py-4 px-6 text-center border-t-2 border-emerald-100 text-xs text-emerald-800 font-bold flex flex-col sm:flex-row justify-between items-center gap-2 z-10">
             <div>&copy; 2026 Green Light Automotive Center. All rights reserved.</div>
             <button onclick="window.location.reload()" class="text-emerald-700 hover:text-emerald-950 font-black transition-colors py-1 px-2 rounded border border-emerald-200 bg-white shadow-sm">Back to Home</button>
         </footer>
     </div>
 
+    <!-- Frontend Engine Script Core -->
     <script>
         const EXPECTED_PASSWORD = "1234";
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby0_1D1PGf-A5Ujp56rLkGbH8KuAC51NZIXSgaV1CFunZn9JeOs-Z4dGdIz27sKhw6P/exec";
@@ -307,7 +343,7 @@
                 successGoodTitle: "እናመሰግናለን!",
                 successGoodDesc: "አስተያየትዎ በተሳካ ሁኔታ ተመዝግቧል። እኛን ስለመረጡ እናመሰግናለን።",
                 successBadTitle: "አስተያየትዎን ተቀብለናል!",
-                successBadDesc: "ስለተፈጠረው ችግር እናዝናለን፤ ያጋጠመዎትን ቅሬታ ቡድናችን አስቸኳይ ትከረካ ሰጥቶ የሚያስተካክል ይሆናል።",
+                successBadDesc: "ስለተፈጠረው ችግር እናዝናለን፤ ያጋጠመዎትን ቅሬታ ቡድናችን አስቸኳይ ትኩረት ሰጥቶ የሚያስተካክል ይሆናል።",
                 reload: "ሌላ አስተያየት ይላኩ"
             },
             en: {
@@ -457,15 +493,28 @@
             }
         });
 
-        async function promptAdminLogin() {
-            const pass = prompt("Enter Managerial Dashboard Key Code:");
+        // CUSTOM MODAL TRIGGERS (BYPASSING ANNOYING BROWSER PROMPT CRASHES)
+        function openCustomLoginModal() {
+            document.getElementById('modalAdminPassword').value = "";
+            document.getElementById('custom-login-modal').classList.remove('hidden');
+            document.getElementById('modalAdminPassword').focus();
+        }
+
+        function closeCustomLoginModal() {
+            document.getElementById('custom-login-modal').classList.add('hidden');
+        }
+
+        async function submitCustomLoginVerify() {
+            const pass = document.getElementById('modalAdminPassword').value.trim();
             if (!pass) return;
 
             if (pass !== EXPECTED_PASSWORD) {
-                alert("Frontend Error: Input password mismatch. Code requires 1234 on screen.");
+                alert("Incorrect entry code access format. Required passcode mismatch error.");
                 return;
             }
 
+            closeCustomLoginModal();
+            
             document.getElementById('landing-page').classList.add('hidden');
             document.getElementById('main-app-content').classList.remove('hidden');
             document.getElementById('form-container').classList.add('hidden');
@@ -481,7 +530,6 @@
                 
                 const resultData = await res.json();
 
-                // DIAGNOSTIC ALERT: Tells us exactly what the Apps Script code is responding with
                 if (resultData.status === "unauthorized") {
                     alert("SERVER REJECTION INTERCEPT:\nThe Apps Script code rejected the password. Status: " + resultData.status + "\nReason: " + resultData.message);
                     closeAdminView();
