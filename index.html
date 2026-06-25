@@ -18,18 +18,14 @@
 </head>
 <body class="premium-bg text-emerald-900 font-sans min-h-screen flex flex-col justify-between antialiased selection:bg-emerald-100">
 
-    <!-- LANDING PAGE INSTANCE SCREEN (BALANCED & SCALED TO PREVENT GAPING GAPS) -->
     <div id="landing-page" class="fixed inset-0 bg-white z-50 flex flex-col h-screen p-4 overflow-y-auto custom-scroll">
         
-        <!-- Top Header Bar - ENLARGED BY 25% -->
         <div class="w-full flex items-center justify-between border-b border-emerald-100 pb-3 max-w-md mx-auto shrink-0">
             <div class="flex items-center space-x-3">
-                <!-- Logo scaled up 25% (w-8 -> w-10) -->
                 <div class="bg-white p-1 rounded-xl border-2 border-emerald-500 shadow-sm shrink-0">
                     <img src="logo.png" alt="GLAC Logo" class="w-10 h-10 object-contain rounded-md" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=100&q=80';">
                 </div>
                 <div>
-                    <!-- Font scaled up 25% (text-sm -> text-base/lg) -->
                     <h1 class="text-base sm:text-lg font-black uppercase tracking-wide text-emerald-700 leading-none">Green Light</h1>
                     <p class="text-[11px] text-emerald-500 font-bold uppercase tracking-widest mt-1">Automotive Center</p>
                 </div>
@@ -37,77 +33,50 @@
             <span class="text-[10px] bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full font-extrabold tracking-tight border border-emerald-200">Customer Node</span>
         </div>
 
-        <!-- Middle Content Container - Restructured to stack elegantly and absorb space -->
         <div class="flex-grow flex flex-col justify-start w-full max-w-md mx-auto pt-4 pb-2 space-y-4">
             
-            <!-- EXPANSED LIVE ANNOUNCEMENTS FEED (Fills the blank space professionally) -->
-            <div class="bg-emerald-50/70 border-2 border-emerald-200 rounded-2xl p-3.5 space-y-2 shadow-sm">
-                <div class="flex items-center justify-between border-b border-emerald-200/60 pb-1.5">
-                    <span class="flex items-center gap-1.5 text-xs font-black uppercase text-emerald-700 tracking-wider">
+            <div class="bg-gradient-to-br from-emerald-50 to-emerald-100/50 border-2 border-emerald-500/30 rounded-2xl p-4 space-y-2.5 shadow-sm">
+                <div class="flex items-center justify-between border-b border-emerald-200 pb-1.5">
+                    <span class="flex items-center gap-1.5 text-xs font-black uppercase text-emerald-800 tracking-wider">
                         <span class="inline-block w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse"></span> Center Announcements
                     </span>
-                    <span class="text-[10px] font-bold bg-emerald-200/60 text-emerald-800 px-2 py-0.5 rounded-md">Live Updates</span>
+                    <span class="text-[9px] font-black tracking-widest uppercase bg-emerald-600 text-white px-2 py-0.5 rounded-md">Live Updates</span>
                 </div>
-                <!-- This target element links with the live Admin Content Management tool below -->
-                <div id="live-news-ticker" class="max-h-24 overflow-y-auto text-xs font-semibold text-emerald-800 leading-relaxed custom-scroll space-y-2">
-                    <p class="border-l-4 border-emerald-500 pl-2">🚀 Upgrade: Digital automated service reports are now fully active inside our portal framework!</p>
-                    <p class="border-l-4 border-emerald-500 pl-2 text-emerald-600">🛠️ Reminder: Complete safety inspections run daily from 8:00 AM to 6:00 PM.</p>
-                </div>
+                <div id="live-news-ticker" class="text-xs font-bold text-emerald-900 leading-relaxed space-y-2"></div>
             </div>
 
-            <!-- Facility Image Banner -->
             <div class="w-full h-36 sm:h-44 rounded-2xl overflow-hidden border border-emerald-500 shadow-sm relative shrink-0">
                 <img src="autocenter-hero.jpg" alt="GLAC Facility" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=600&q=80';">
                 <div class="absolute bottom-2 right-2 bg-emerald-950/70 backdrop-blur-sm px-2.5 py-1 rounded-md text-[10px] text-white font-bold tracking-wider uppercase">Your Safety Partner</div>
             </div>
 
-            <!-- Welcoming Entry Node Block -->
             <div class="text-center space-y-1 py-1">
                 <h2 class="text-lg sm:text-xl font-black text-emerald-800 tracking-tight">Customer Experience Portal</h2>
                 <p class="text-emerald-600 text-[10px] font-bold uppercase tracking-wide">Select Language / እባክዎ ቋንቋ ይምረጡ</p>
             </div>
 
-            <!-- Mini & Artistic Language Selection Matrix Buttons -->
             <div class="grid grid-cols-3 gap-2.5">
-                <button onclick="selectInitialLanguage('am')" class="group relative flex flex-col items-center justify-center py-3 bg-gradient-to-b from-white to-emerald-50 hover:to-emerald-100 border border-emerald-300 rounded-xl transition-all active:scale-95 shadow-sm">
-                    <span class="text-xs font-black text-emerald-800 group-hover:text-emerald-600 transition-colors">አማርኛ</span>
-                    <span class="text-[8px] uppercase tracking-widest font-bold text-emerald-400 mt-0.5">Amharic</span>
+                <button onclick="selectInitialLanguage('am')" class="group relative flex flex-col items-center justify-center py-3 bg-emerald-600 hover:bg-emerald-700 text-white border border-emerald-700 rounded-xl transition-all active:scale-95 shadow-md">
+                    <span class="text-sm font-black tracking-wide">አማርኛ</span>
+                    <span class="text-[8px] uppercase tracking-widest font-black text-emerald-200 mt-0.5">Amharic</span>
                 </button>
-                <button onclick="selectInitialLanguage('en')" class="group relative flex flex-col items-center justify-center py-3 bg-gradient-to-b from-white to-emerald-50 hover:to-emerald-100 border border-emerald-300 rounded-xl transition-all active:scale-95 shadow-sm">
-                    <span class="text-xs font-black text-emerald-800 group-hover:text-emerald-600 transition-colors">ENGLISH</span>
-                    <span class="text-[8px] uppercase tracking-widest font-bold text-emerald-400 mt-0.5">Global</span>
+                <button onclick="selectInitialLanguage('en')" class="group relative flex flex-col items-center justify-center py-3 bg-emerald-600 hover:bg-emerald-700 text-white border border-emerald-700 rounded-xl transition-all active:scale-95 shadow-md">
+                    <span class="text-sm font-black tracking-wide">ENGLISH</span>
+                    <span class="text-[8px] uppercase tracking-widest font-black text-emerald-200 mt-0.5">Global</span>
                 </button>
-                <button onclick="selectInitialLanguage('om')" class="group relative flex flex-col items-center justify-center py-3 bg-gradient-to-b from-white to-emerald-50 hover:to-emerald-100 border border-emerald-300 rounded-xl transition-all active:scale-95 shadow-sm">
-                    <span class="text-xs font-black text-emerald-800 group-hover:text-emerald-600 transition-colors">OROMOO</span>
-                    <span class="text-[8px] uppercase tracking-widest font-bold text-emerald-400 mt-0.5">Afaan</span>
+                <button onclick="selectInitialLanguage('om')" class="group relative flex flex-col items-center justify-center py-3 bg-emerald-600 hover:bg-emerald-700 text-white border border-emerald-700 rounded-xl transition-all active:scale-95 shadow-md">
+                    <span class="text-sm font-black tracking-wide">OROMOO</span>
+                    <span class="text-[8px] uppercase tracking-widest font-black text-emerald-200 mt-0.5">Afaan</span>
                 </button>
-            </div>
-
-            <!-- Dynamic Feature Badge Strip -->
-            <div class="grid grid-cols-3 gap-2.5 pt-2 border-t border-emerald-100">
-                <div class="text-center p-1.5 bg-emerald-50/50 rounded-xl border border-emerald-100">
-                    <span class="text-sm">🛡️</span>
-                    <p class="text-[9px] font-black text-emerald-700 uppercase tracking-tight mt-0.5">Secure Log</p>
-                </div>
-                <div class="text-center p-1.5 bg-emerald-50/50 rounded-xl border border-emerald-100">
-                    <span class="text-sm">📊</span>
-                    <p class="text-[9px] font-black text-emerald-700 uppercase tracking-tight mt-0.5">Realtime Sync</p>
-                </div>
-                <div class="text-center p-1.5 bg-emerald-50/50 rounded-xl border border-emerald-100">
-                    <span class="text-sm">🚀</span>
-                    <p class="text-[9px] font-black text-emerald-700 uppercase tracking-tight mt-0.5">Fast Engine</p>
-                </div>
             </div>
         </div>
 
-        <!-- Landing Screen Footer -->
         <div class="w-full flex justify-between items-center text-[10px] text-emerald-700 font-bold pt-3 border-t border-emerald-100 max-w-md mx-auto shrink-0 mt-auto">
             <div>&copy; 2026 GLAC Portal.</div>
             <button onclick="openCustomLoginModal()" class="text-emerald-700 hover:text-emerald-950 font-black transition-colors py-1 px-3 rounded-lg border border-emerald-300 bg-emerald-50/50 shadow-sm active:scale-95">Manager Portal</button>
         </div>
     </div>
 
-    <!-- CUSTOM INLINE MANAGER LOGIN MODAL DIALOG -->
     <div id="custom-login-modal" class="hidden fixed inset-0 bg-emerald-950/40 backdrop-blur-sm flex items-center justify-center p-4 z-[60]">
         <div class="bg-white border-2 border-emerald-600 w-full max-w-sm rounded-2xl p-6 shadow-2xl transition-all transform scale-100">
             <div class="text-center space-y-2 mb-4">
@@ -125,9 +94,7 @@
         </div>
     </div>
 
-    <!-- Core App Dashboard Frame View Wrapper -->
     <div id="main-app-content" class="hidden flex-grow flex flex-col justify-between min-h-screen">
-        <!-- Header Section -->
         <header class="bg-white border-b border-emerald-200 py-3 px-4 sticky top-0 z-40 shadow-sm">
             <div class="max-w-5xl mx-auto flex flex-row justify-between items-center">
                 <div class="flex items-center space-x-3">
@@ -143,7 +110,6 @@
             </div>
         </header>
 
-        <!-- Main Workspace Frame -->
         <main class="flex-grow flex flex-col items-center justify-center p-3 md:p-6 z-10 relative max-w-5xl mx-auto w-full">
             <div id="hero-block" class="text-center mb-4 max-w-xl">
                 <span class="text-white text-[9px] font-black uppercase tracking-widest bg-emerald-600 px-3 py-1 rounded-full shadow-sm">Operations Registry</span>
@@ -151,7 +117,6 @@
                 <p id="txt-subtitle" class="text-emerald-800 text-xs mt-1 font-bold leading-relaxed"></p>
             </div>
 
-            <!-- Service Feature Trust Badges Matrix -->
             <div id="features-bar" class="grid grid-cols-3 gap-2.5 w-full max-w-xl mb-4 text-center">
                 <div class="bg-emerald-50/50 p-2 rounded-xl border border-emerald-200 shadow-sm flex flex-col items-center justify-center">
                     <span class="text-lg">⏱️</span>
@@ -167,7 +132,6 @@
                 </div>
             </div>
 
-            <!-- Customer Input View Engine Card -->
             <div id="form-container" class="glass-card rounded-2xl shadow-lg p-5 md:p-6 w-full max-w-xl transition-all duration-300">
                 <div id="success-message" class="hidden text-center py-6">
                     <div id="success-icon" class="inline-flex items-center justify-center w-14 h-14 rounded-full text-2xl mb-3 shadow-md"></div>
@@ -176,7 +140,6 @@
                     <button onclick="window.location.reload()" id="txt-reload-btn" class="mt-4 px-4 py-2 rounded-xl border border-emerald-600 hover:bg-emerald-600 hover:text-white text-emerald-700 text-[11px] font-black transition-all uppercase tracking-wider"></button>
                 </div>
 
-                <!-- Core Live Feedback Form -->
                 <form id="feedback-form" class="space-y-3.5">
                     <div>
                         <label id="lbl-name" class="block text-[10px] font-black uppercase tracking-wider text-emerald-700 mb-1"></label>
@@ -231,7 +194,6 @@
                 </form>
             </div>
 
-            <!-- UPGRADED MANAGEMENT REPORTING INTERACTIVE ANALYTICS PORTAL PANEL -->
             <div id="admin-dashboard" class="hidden w-full max-w-5xl bg-white border-2 border-emerald-600 rounded-2xl shadow-xl p-4 md:p-6 transition-all duration-300">
                 <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center border-b-2 border-emerald-100 pb-4 mb-4 gap-4">
                     <div>
@@ -250,17 +212,6 @@
                     </div>
                 </div>
 
-                <!-- NEW COMPONENT: LIVE ANNOUNCEMENT MANAGER TOOL FOR ADMINS -->
-                <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl mb-4">
-                    <h3 class="text-xs font-black uppercase tracking-wider text-emerald-800 mb-1 flex items-center gap-1">📢 Live Announcement Center Content Broadcaster</h3>
-                    <p class="text-[10px] text-emerald-500 mb-2 font-semibold">Type updates here to change the text displayed to customers on the home welcome screen.</p>
-                    <div class="flex flex-col sm:flex-row gap-2">
-                        <textarea id="adminNewsInput" rows="2" class="w-full bg-white border border-emerald-300 rounded-xl px-3 py-1.5 text-xs font-bold text-emerald-900 focus:outline-none focus:border-emerald-600 custom-scroll resize-none" placeholder="Enter new bullet points here... Use a new line for each item."></textarea>
-                        <button onclick="updateLiveCustomerNewsTicker()" class="bg-emerald-700 hover:bg-emerald-600 text-white px-4 py-2 text-xs font-black uppercase tracking-wider rounded-xl transition-all shadow-sm shrink-0 flex items-center justify-center">Publish Update</button>
-                    </div>
-                </div>
-
-                <!-- Live Search Filters Strip -->
                 <div class="bg-emerald-50/50 border border-emerald-200 p-3 rounded-xl mb-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label class="block text-[9px] font-black tracking-wider text-emerald-700 uppercase mb-1">Filter By Experience Tier</label>
@@ -276,7 +227,6 @@
                     </div>
                 </div>
 
-                <!-- Scorecards Matrix Rows -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
                     <div class="bg-emerald-50/60 p-3 border border-emerald-100 rounded-xl flex flex-col justify-between shadow-sm">
                         <p class="text-[9px] text-emerald-600 font-black uppercase tracking-wider">Total Feedback Logs</p>
@@ -296,9 +246,7 @@
                     </div>
                 </div>
 
-                <!-- CHARTS COMPLEX PLATFORM GRID -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                    <!-- Circle Status Bar -->
                     <div class="bg-white p-3 rounded-xl border border-emerald-200 flex flex-col items-center justify-between shadow-sm">
                         <div class="w-full text-left">
                             <h4 class="text-[10px] uppercase font-black tracking-wider text-emerald-700">Satisfactory Ratio</h4>
@@ -313,7 +261,6 @@
                         </div>
                     </div>
 
-                    <!-- Volume Distribution Matrix Bar Chart -->
                     <div class="bg-white p-3 rounded-xl border border-emerald-200 flex flex-col justify-between shadow-sm md:col-span-2">
                         <div>
                             <h4 class="text-[10px] uppercase font-black tracking-wider text-emerald-700">Rating Frequency Matrix</h4>
@@ -323,7 +270,6 @@
                     </div>
                 </div>
 
-                <!-- Granular Feed Section -->
                 <div class="bg-white rounded-xl border border-emerald-200 p-3">
                     <h4 class="text-[10px] uppercase font-black tracking-wider text-emerald-700 mb-2 flex items-center justify-between">
                         <span>Granular Customer Comments Log</span>
@@ -334,7 +280,6 @@
             </div>
         </main>
 
-        <!-- INLINE FOCUS MODAL EXPANSION VIEW OVERLAY -->
         <div id="detail-modal" class="hidden fixed inset-0 bg-emerald-950/30 backdrop-blur-sm flex items-center justify-center p-4 z-50">
             <div class="bg-white border-2 border-emerald-500 w-full max-w-md rounded-2xl p-5 shadow-2xl transition-all scale-95 duration-150" id="modal-content">
                 <div class="flex justify-between items-start border-b border-emerald-100 pb-3 mb-4">
@@ -373,15 +318,24 @@
             </div>
         </div>
 
-        <!-- Secondary Form View Footer -->
         <footer class="bg-emerald-50/70 py-3 px-6 text-center border-t border-emerald-200 text-[11px] text-emerald-800 font-bold flex flex-row justify-between items-center gap-2 z-10">
             <div>&copy; 2026 Green Light Automotive Center.</div>
             <button onclick="window.location.reload()" class="text-emerald-700 hover:text-emerald-950 font-black transition-colors py-0.5 px-2 rounded border border-emerald-200 bg-white shadow-sm">Home</button>
         </footer>
     </div>
 
-    <!-- Frontend Engine Script Core -->
     <script>
+        // =========================================================================
+        // 📢 CENTER ANNOUNCEMENTS CONFIGURATION SPACE
+        // To update updates on your live site, change the text inside these quotes,
+        // save the file, and commit/push directly to your GitHub repository!
+        // =========================================================================
+        const ANNOUNCEMENT_POSTS = [
+            "🚀 Upgrade: Digital automated service reports are now fully active inside our portal framework!",
+            "🛠️ Reminder: Complete safety inspections run daily from 8:00 AM to 6:00 PM."
+        ];
+        // =========================================================================
+
         const EXPECTED_PASSWORD = "1234";
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby0_1D1PGf-A5Ujp56rLkGbH8KuAC51NZIXSgaV1CFunZn9JeOs-Z4dGdIz27sKhw6P/exec";
 
@@ -457,35 +411,20 @@
         let chartInstance1 = null;
         let chartInstanceCircle = null;
 
-        // Populate input value on system initialization with current ticker text
+        // Automatically build announcements list using the config array space above
         window.addEventListener('DOMContentLoaded', () => {
-            const lines = Array.from(document.querySelectorAll('#live-news-ticker p')).map(p => p.innerText);
-            document.getElementById('adminNewsInput').value = lines.join('\n');
-        });
-
-        function updateLiveCustomerNewsTicker() {
-            const textInput = document.getElementById('adminNewsInput').value.trim();
             const tickerContainer = document.getElementById('live-news-ticker');
-            
-            if (!textInput) {
-                alert("Announcement string body cannot be empty.");
-                return;
-            }
-
-            const textLines = textInput.split('\n');
             tickerContainer.innerHTML = "";
-
-            textLines.forEach((line, i) => {
-                if(line.trim()) {
+            
+            ANNOUNCEMENT_POSTS.forEach((line, i) => {
+                if (line.trim()) {
                     const p = document.createElement('p');
-                    p.className = `border-l-4 border-emerald-500 pl-2 ${i > 0 ? 'text-emerald-600' : ''}`;
+                    p.className = `border-l-4 border-emerald-600 pl-2.5 ${i > 0 ? 'text-emerald-700' : ''}`;
                     p.innerText = line.trim();
                     tickerContainer.appendChild(p);
                 }
             });
-
-            alert("Success! The customer screen announcement board has been updated live.");
-        }
+        });
 
         function selectInitialLanguage(lang) {
             changeLanguage(lang);
